@@ -1,0 +1,12 @@
+body {
+  font-family: sans-serif;
+}
+
+#graphContainer {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  cursor: default;
+  background: white;
+}
