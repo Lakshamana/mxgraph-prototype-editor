@@ -1,11 +1,9 @@
 const mxgraph = require('mxgraph')({
-  mxImageBasePath: './src/images',
-  mxBasePath: ''
+  mxImageBasePath: 'src/images',
+  mxBasePath: 'src'
 })
+const fs = require('fs')
 
-// Program starts here. Creates a sample graph in the
-// DOM node with the specified ID. This function is invoked
-// from the onLoad event handler of the document (see below).
 function main(container) {
   // Checks if the browser is supported
   if (!mxgraph.mxClient.isBrowserSupported()) {
@@ -16,17 +14,25 @@ function main(container) {
     mxgraph.mxEvent.disableContextMenu(container)
 
     // Creates the graph inside the given container
-    const graph = new mxgraph.mxGraph(container)
+    var graph = new mxgraph.mxGraph(container)
 
     //Adds a new HierarquicalLayout
-    const layout = mxgraph.mxHi
-
-    // Adds cells to the model in a single step
+    var layout = new mxgraph.mxHierarchicalLayout(graph)
+    
+    // Adds cells to the model in a mxgraph prototype editor single step
     graph.getModel().beginUpdate()
     try {
-      // Gets the default parent for inserting new cells. This
-      // is normally the first child of the root (ie. layer 0).
-      const parent = graph.getDefaultParent()
+      //deal with xml
+      var xmlstr = fs.readFileSync('src/resources/diag.xml', 'utf-8')
+      console.log(`%${xmlstr}%`)
+      var doc = mxgraph.mxUtils.parseXml(xmlstr)
+      var codec = new mxgraph.mxCodec(doc)
+      const x = codec.decode(doc.documentElement, graph.getModel())
+      console.log(x)
+      
+      var parent = graph.getDefaultParent()
+      //execute layout
+      layout.execute(parent)
     } finally {
       // Updates the display
       graph.getModel().endUpdate()
@@ -34,4 +40,6 @@ function main(container) {
   }
 }
 
-window.onload = main(document.getElementById('graphContainer'))
+window.onload = function() {
+  main(document.getElementById('graphContainer'))
+}

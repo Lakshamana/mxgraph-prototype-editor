@@ -8,11 +8,11 @@
     "build": "parcel build index.html"
   },
   "dependencies": {
-    "mxgraph": "3.9.12"
+    "mxgraph": "^3.9.12"
   },
   "devDependencies": {
     "@babel/core": "7.2.0",
-    "parcel-bundler": "^1.6.1"
+    "parcel-bundler": "^1.12.3"
   },
   "keywords": []
 }
