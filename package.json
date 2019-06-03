@@ -8,7 +8,8 @@
     "build": "parcel build index.html"
   },
   "dependencies": {
-    "mxgraph": "^3.9.12"
+    "mxgraph": "^3.9.12",
+    "mxgraph-working": "^3.9.10"
   },
   "devDependencies": {
     "@babel/core": "7.2.0",
