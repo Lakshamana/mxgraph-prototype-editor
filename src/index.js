@@ -36,18 +36,15 @@ function main(container) {
     mxgraph.mxUtils.error('Browser is not supported!', 200, false)
   } else {
     mxgraph.mxEvent.disableContextMenu(container)
+    new mxgraph.mxRubberband(graph)
     const graph = new mxgraph.mxGraph(container)
-    const layout = new mxgraph.mxHierarchicalLayout(graph)
+    const parent = graph.getDefaultParent()
     graph.getModel().beginUpdate()
     try {
       //deal with xml
       const xmlstr = fs.readFileSync('src/resources/diag.xml', 'utf-8')
       const doc = mxgraph.mxUtils.parseXml(xmlstr)
       parseXmlToGraph(doc, graph)
-      
-      const parent = graph.getDefaultParent()
-      //execute layout
-      layout.execute(parent)
     } finally {
       graph.getModel().endUpdate()
     }
