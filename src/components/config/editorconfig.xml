@@ -245,7 +245,7 @@
 				<add as="fontSize" value="10"/>
 				<add as="align" value="center"/>
 				<add as="verticalAlign" value="middle"/>
-				<add as="image" value="../../../assets/mxlogo.jpg"/>
+				<add as="image" value="../assets/mxlogo.jpg"/>
 			</add>
 		</mxStylesheet>
 		<mxGraphModel as="model">
@@ -287,7 +287,7 @@
 		</mxGraphModel>
 	</mxGraph>
 	<mxDefaultToolbar as="toolbar">
-		<add as="connect" mode="connect" icon="../../../assets/connect.gif"><![CDATA[
+		<add as="connect" mode="connect" icon="../assets/connect.gif"><![CDATA[
 			function (editor)
 			{
 				if (editor.defaultEdge != null)
@@ -296,7 +296,7 @@
 				}
 			}
 		]]></add>
-		<add as="connect" mode="connect" icon="../../../assets/straight.gif"><![CDATA[
+		<add as="connect" mode="connect" icon="../assets/straight.gif"><![CDATA[
 			function (editor)
 			{
 				if (editor.defaultEdge != null)
@@ -305,7 +305,7 @@
 				}
 			}
 		]]></add>
-		<add as="connect" mode="connect" icon="../../../assets/arrow.gif"><![CDATA[
+		<add as="connect" mode="connect" icon="../assets/arrow.gif"><![CDATA[
 			function (editor)
 			{
 				if (editor.defaultEdge != null)
@@ -315,19 +315,19 @@
 			}
 		]]></add>
 		<br/><br/>
-		<add as="Text" template="text" icon="../../../assets/text.gif"/>
-		<add as="Container" template="container" icon="../../../assets/swimlane.gif"/>
-		<add as="Rectangle" template="rectangle" icon="../../../assets/rectangle.gif"/>
-		<add as="Rounded" template="rounded" icon="../../../assets/rounded.gif"/>
-		<add as="Ellipse" template="shape" style="ellipse" icon="../../../assets/ellipse.gif"/>
-		<add as="Double Ellipse" template="shape" style="doubleEllipse" icon="../../../assets/doubleellipse.gif"/>
-		<add as="Rhombus" template="shape" style="rhombus" icon="../../../assets/rhombus.gif"/>
-		<add as="Triangle" template="actor" style="triangle" icon="../../../assets/triangle.gif"/>
-		<add as="Hexagon" template="cloud" style="hexagon" icon="../../../assets/hexagon.gif"/>
-		<add as="Actor" template="actor" style="actor" icon="../../../assets/actor.gif"/>
-		<add as="Cylinder" template="shape" style="cylinder" icon="../../../assets/cylinder.gif"/>
-		<add as="Cloud" template="cloud" style="cloud" icon="../../../assets/cloud.gif"/>
-		<add as="Line" template="hline" style="hline" icon="../../../assets/hline.gif"/>
-		<add as="Image" template="image" icon="../../../assets/image.gif"/>
+		<add as="Text" template="text" icon="../assets/text.gif"/>
+		<add as="Container" template="container" icon="../assets/swimlane.gif"/>
+		<add as="Rectangle" template="rectangle" icon="../assets/rectangle.gif"/>
+		<add as="Rounded" template="rounded" icon="../assets/rounded.gif"/>
+		<add as="Ellipse" template="shape" style="ellipse" icon="../assets/ellipse.gif"/>
+		<add as="Double Ellipse" template="shape" style="doubleEllipse" icon="../assets/doubleellipse.gif"/>
+		<add as="Rhombus" template="shape" style="rhombus" icon="../assets/rhombus.gif"/>
+		<add as="Triangle" template="actor" style="triangle" icon="../assets/triangle.gif"/>
+		<add as="Hexagon" template="cloud" style="hexagon" icon="../assets/hexagon.gif"/>
+		<add as="Actor" template="actor" style="actor" icon="../assets/actor.gif"/>
+		<add as="Cylinder" template="shape" style="cylinder" icon="../assets/cylinder.gif"/>
+		<add as="Cloud" template="cloud" style="cloud" icon="../assets/cloud.gif"/>
+		<add as="Line" template="hline" style="hline" icon="../assets/hline.gif"/>
+		<add as="Image" template="image" icon="../assets/image.gif"/>
 	</mxDefaultToolbar>
 </mxEditor>
