@@ -1,24 +1,26 @@
 <template>
-  <div>
-    <table border="0" width="730px">
-      <tr>
-        <td id="toolbar" valign="top">
-          <!-- Toolbar Here -->
-        </td>
-        <td valign="top" id="graphContainer">
-          <div id="graph" tabindex="-1">
-            <!-- Graph Here -->
-            <center ref="splash" id="splash">
-              <img src="../assets/loading.gif" />
-            </center>
-          </div>
-          <textarea ref="xml" id="xml"></textarea>
-        </td>
-      </tr>
-    </table>
-    <span class="source-ipt">
-      <input ref="source" id="source" type="checkbox" />Source
-    </span>
+  <div class="columns is-centered">
+    <div class="column is-10">
+      <table border="0" width="730px">
+        <tr>
+          <td id="toolbar" valign="top">
+            <!-- Toolbar Here -->
+          </td>
+          <td valign="top" ref="graphContainer" id="graphContainer">
+            <div id="graph" tabindex="-1">
+              <!-- Graph Here -->
+              <center ref="splash" id="splash">
+                <img src="../assets/loading.gif" />
+              </center>
+            </div>
+            <textarea ref="xml" id="xml"></textarea>
+          </td>
+        </tr>
+      </table>
+      <span class="source-ipt">
+        <input ref="source" id="source" type="checkbox" />Source
+      </span>
+    </div>
   </div>
 </template>
 
@@ -84,10 +86,11 @@ export default {
     addToWindow('mxXmlCanvas2D', mxXmlCanvas2D)
     addToWindow('mxImage', mxImage)
     addToWindow('mxResources', mxResources)
+    addToWindow('onInit', this.onInit)
   },
 
   mounted() {
-    this.editor = this.createEditor('https://raw.githubusercontent.com/Lakshamana/mxgraph-prototype-editor/master/src/components/config/editorconfig.xml')
+    this.editor = this.createEditor('config/editorconfig.xml')
   },
 
   beforeDestroy() {
@@ -105,9 +108,9 @@ export default {
         if (splash != null) {
           try {
             mxEvent.release(splash)
-            mxEffects.fadeOut(splash, 100, true)
+            mxEffects.fadeOut(splash, 300, true)
           } catch (e) {
-            splash.parentNode.removeChild(splash)
+            this.loading = false
           }
         }
       }
@@ -119,6 +122,10 @@ export default {
           mxObjectCodec.allowEval = true
           const node = mxUtils.load(config).getDocumentElement()
           editor = new mxEditor(node)
+          const that = this
+          editor.onInit = function() {
+            that.onInit(this)
+          }
           mxObjectCodec.allowEval = false
 
           // Adds active border for panning inside the container
@@ -177,7 +184,7 @@ export default {
       // Defines an icon for creating new connections in the connection handler.
       // This will automatically disable the highlighting of the source vertex.
       mxConnectionHandler.prototype.connectImage = new mxImage(
-        'images/connector.gif',
+        '../assets/connector.gif',
         16,
         16
       )
@@ -217,7 +224,7 @@ export default {
       // Defines a new action to switch between
       // XML and graphical display
       const textNode = this.$refs.xml
-      const graphNode = editor.graph.container
+      const graphNode = this.$refs.graphContainer
       const sourceInput = this.$refs.source
       sourceInput.checked = false
 

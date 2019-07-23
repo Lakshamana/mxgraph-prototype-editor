@@ -1,9 +1,8 @@
 <mxEditor defaultGroup="group" defaultEdge="connector">
-	<include name="./editor-commons.xml"/>
+	<include name="editor-commons.xml"/>
 	<add as="onInit"><![CDATA[
-		function ()
-		{
-			onInit(this);
+		function () {
+			window.onInit(this)
 		}
 	]]></add>
 	<ui>
@@ -315,7 +314,7 @@
 			}
 		]]></add>
 		<br/><br/>
-		<add as="Text" template="text" icon="assets/text.gif"/>
+		<add as="Text" template="text" icon="../../assets/text.gif"/>
 		<add as="Container" template="container" icon="../../assets/swimlane.gif"/>
 		<add as="Rectangle" template="rectangle" icon="../../assets/rectangle.gif"/>
 		<add as="Rounded" template="rounded" icon="../../assets/rounded.gif"/>
