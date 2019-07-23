@@ -50,7 +50,8 @@ const {
   mxConstants,
   mxXmlCanvas2D,
   mxImage,
-  mxResources
+  mxResources,
+  mxStylesheet
 } = new mxGraphFactory()
 
 export default {
@@ -86,6 +87,7 @@ export default {
     addToWindow('mxXmlCanvas2D', mxXmlCanvas2D)
     addToWindow('mxImage', mxImage)
     addToWindow('mxResources', mxResources)
+    addToWindow('mxStylesheet', mxStylesheet)
     addToWindow('onInit', this.onInit)
   },
 
@@ -122,6 +124,7 @@ export default {
           mxObjectCodec.allowEval = true
           const node = mxUtils.load(config).getDocumentElement()
           editor = new mxEditor(node)
+          console.log(editor)
           mxObjectCodec.allowEval = false
 
           // Adds active border for panning inside the container
