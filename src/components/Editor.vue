@@ -90,7 +90,7 @@ export default {
   },
 
   mounted() {
-    this.editor = this.createEditor('config/editorconfig.xml')
+    this.editor = this.createEditor('https://raw.githubusercontent.com/Lakshamana/mxgraph-prototype-editor/master/src/components/config/editorconfig.xml')
   },
 
   beforeDestroy() {
@@ -122,10 +122,6 @@ export default {
           mxObjectCodec.allowEval = true
           const node = mxUtils.load(config).getDocumentElement()
           editor = new mxEditor(node)
-          const that = this
-          editor.onInit = function() {
-            that.onInit(this)
-          }
           mxObjectCodec.allowEval = false
 
           // Adds active border for panning inside the container
