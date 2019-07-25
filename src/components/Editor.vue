@@ -10,7 +10,7 @@
             <div id="graph" tabindex="-1">
               <!-- Graph Here -->
               <center ref="splash" id="splash">
-                <img src="../assets/loading.gif" />
+                <img src="../static/examples/editors/images/loading.gif" />
               </center>
             </div>
             <textarea ref="xml" id="xml"></textarea>
@@ -92,7 +92,7 @@ export default {
   },
 
   mounted() {
-    this.editor = this.createEditor('https://raw.githubusercontent.com/Lakshamana/mxgraph-prototype-editor/master/src/components/config/editorconfig.xml')
+    this.editor = this.createEditor('../static/examples/editors/config/diagrameditor.xml')
   },
 
   beforeDestroy() {
