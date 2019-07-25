@@ -1,9 +1,9 @@
 <mxEditor defaultGroup="group" defaultEdge="edge"
-	helpWindowImage="static/examples/editors/images/help.gif"
-	tasksWindowImage="static/examples/editors/images/tasks.gif"
+	helpWindowImage="http://localhost:3000/images/help.gif"
+	tasksWindowImage="http://localhost:3000/images/tasks.gif"
 	forcedInserting="0"
 	swimlaneRequired="0">
-	<include name="static/examples/editors/config/editor-commons.xml"/>
+	<include name="http://localhost:3000/config/editor-commons.xml"/>
 	<add as="onInit">
 		function ()
 		{
@@ -60,7 +60,7 @@
 		</add>
 		<add as="symbol">
 			<Symbol label="Symbol" description="" href="">
-				<mxCell vertex="1" style="symbol;image=static/examples/editors/images/symbols/event.png">		
+				<mxCell vertex="1" style="symbol;image=http://localhost:3000/images/symbols/event.png">		
 					<mxGeometry as="geometry" width="32" height="32"/>
 				</mxCell>
 			</Symbol>

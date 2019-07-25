@@ -94,7 +94,7 @@ export default {
   },
 
   mounted() {
-    this.editor = this.createEditor('https://raw.githubusercontent.com/Lakshamana/mxgraph-prototype-editor/master/src/static/examples/editors/config/diagrameditor.xml')
+    this.editor = this.createEditor('http://localhost:3000/config/diagrameditor.xml')
   },
 
   beforeDestroy() {
@@ -112,7 +112,7 @@ export default {
         if (splash != null) {
           try {
             mxEvent.release(splash)
-            mxEffects.fadeOut(splash, 300, true)
+            mxEffects.fadeOut(splash, 500, true)
           } catch (e) {
             this.loading = false
           }
@@ -126,7 +126,6 @@ export default {
           mxObjectCodec.allowEval = true
           const node = mxUtils.load(config).getDocumentElement()
           editor = new mxEditor(node)
-          console.log(editor)
           mxObjectCodec.allowEval = false
 
           // Adds active border for panning inside the container
@@ -225,7 +224,7 @@ export default {
       // Defines a new action to switch between
       // XML and graphical display
       const textNode = this.$refs.xml
-      const graphNode = this.$refs.graphContainer
+      const graphNode = editor.graph.container
       const sourceInput = this.$refs.source
       sourceInput.checked = false
 

@@ -1,5 +1,5 @@
 <mxEditor defaultGroup="group" defaultEdge="connector">
-	<include name="static/examples/editors/config/editor-commons.xml"/>
+	<include name="http://localhost:3000/config/editor-commons.xml"/>
 	<add as="onInit"><![CDATA[
 		function ()
 		{
@@ -245,7 +245,7 @@
 				<add as="fontSize" value="10"/>
 				<add as="align" value="center"/>
 				<add as="verticalAlign" value="middle"/>
-				<add as="image" value="static/examples/editors/images/draw/mxlogo.jpg"/>
+				<add as="image" value="http://localhost:3000/images/draw/mxlogo.jpg"/>
 			</add>
 		</mxStylesheet>
 		<mxGraphModel as="model">
@@ -287,7 +287,7 @@
 		</mxGraphModel>
 	</mxGraph>
 	<mxDefaultToolbar as="toolbar">
-		<add as="connect" mode="connect" icon="static/examples/editors/images/connect.gif"><![CDATA[
+		<add as="connect" mode="connect" icon="http://localhost:3000/images/connect.gif"><![CDATA[
 			function (editor)
 			{
 				if (editor.defaultEdge != null)
@@ -296,7 +296,7 @@
 				}
 			}
 		]]></add>
-		<add as="connect" mode="connect" icon="static/examples/editors/images/straight.gif"><![CDATA[
+		<add as="connect" mode="connect" icon="http://localhost:3000/images/straight.gif"><![CDATA[
 			function (editor)
 			{
 				if (editor.defaultEdge != null)
@@ -305,7 +305,7 @@
 				}
 			}
 		]]></add>
-		<add as="connect" mode="connect" icon="static/examples/editors/images/arrow.gif"><![CDATA[
+		<add as="connect" mode="connect" icon="http://localhost:3000/images/arrow.gif"><![CDATA[
 			function (editor)
 			{
 				if (editor.defaultEdge != null)
@@ -315,19 +315,19 @@
 			}
 		]]></add>
 		<br/><br/>
-		<add as="Text" template="text" icon="static/examples/editors/images/text.gif"/>
-		<add as="Container" template="container" icon="static/examples/editors/images/swimlane.gif"/>
-		<add as="Rectangle" template="rectangle" icon="static/examples/editors/images/rectangle.gif"/>
-		<add as="Rounded" template="rounded" icon="static/examples/editors/images/rounded.gif"/>
-		<add as="Ellipse" template="shape" style="ellipse" icon="static/examples/editors/images/ellipse.gif"/>
-		<add as="Double Ellipse" template="shape" style="doubleEllipse" icon="static/examples/editors/images/doubleellipse.gif"/>
-		<add as="Rhombus" template="shape" style="rhombus" icon="static/examples/editors/images/rhombus.gif"/>
-		<add as="Triangle" template="actor" style="triangle" icon="static/examples/editors/images/triangle.gif"/>
-		<add as="Hexagon" template="cloud" style="hexagon" icon="static/examples/editors/images/hexagon.gif"/>
-		<add as="Actor" template="actor" style="actor" icon="static/examples/editors/images/actor.gif"/>
-		<add as="Cylinder" template="shape" style="cylinder" icon="static/examples/editors/images/cylinder.gif"/>
-		<add as="Cloud" template="cloud" style="cloud" icon="static/examples/editors/images/cloud.gif"/>
-		<add as="Line" template="hline" style="hline" icon="static/examples/editors/images/hline.gif"/>
-		<add as="Image" template="image" icon="static/examples/editors/images/image.gif"/>
+		<add as="Text" template="text" icon="http://localhost:3000/images/text.gif"/>
+		<add as="Container" template="container" icon="http://localhost:3000/images/swimlane.gif"/>
+		<add as="Rectangle" template="rectangle" icon="http://localhost:3000/images/rectangle.gif"/>
+		<add as="Rounded" template="rounded" icon="http://localhost:3000/images/rounded.gif"/>
+		<add as="Ellipse" template="shape" style="ellipse" icon="http://localhost:3000/images/ellipse.gif"/>
+		<add as="Double Ellipse" template="shape" style="doubleEllipse" icon="http://localhost:3000/images/doubleellipse.gif"/>
+		<add as="Rhombus" template="shape" style="rhombus" icon="http://localhost:3000/images/rhombus.gif"/>
+		<add as="Triangle" template="actor" style="triangle" icon="http://localhost:3000/images/triangle.gif"/>
+		<add as="Hexagon" template="cloud" style="hexagon" icon="http://localhost:3000/images/hexagon.gif"/>
+		<add as="Actor" template="actor" style="actor" icon="http://localhost:3000/images/actor.gif"/>
+		<add as="Cylinder" template="shape" style="cylinder" icon="http://localhost:3000/images/cylinder.gif"/>
+		<add as="Cloud" template="cloud" style="cloud" icon="http://localhost:3000/images/cloud.gif"/>
+		<add as="Line" template="hline" style="hline" icon="http://localhost:3000/images/hline.gif"/>
+		<add as="Image" template="image" icon="http://localhost:3000/images/image.gif"/>
 	</mxDefaultToolbar>
 </mxEditor>

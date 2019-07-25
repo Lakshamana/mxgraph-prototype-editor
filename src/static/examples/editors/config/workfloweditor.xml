@@ -1,5 +1,5 @@
 <mxEditor>
-	<include name="static/examples/editors/config/wfeditor-commons.xml"/>
+	<include name="http://localhost:3000/config/wfeditor-commons.xml"/>
 	<ui>
 		<add as="graph" element="graph"
 			style="left:70px;right:20px;top:20px;bottom:40px"/>
@@ -8,9 +8,9 @@
 		<add as="toolbar" x="16" y="20" width="50" style="padding:5px;padding-top:8px;padding-right:0px;"/>
 	</ui>
 	<mxGraph as="graph">
-		<include name="static/examples/editors/config/wfgraph-commons.xml"/>
+		<include name="http://localhost:3000/config/wfgraph-commons.xml"/>
 	</mxGraph>
 	<mxDefaultToolbar as="toolbar">
-		<include name="static/examples/editors/config/wftoolbar-commons.xml"/>
+		<include name="http://localhost:3000/config/wftoolbar-commons.xml"/>
 	</mxDefaultToolbar>
 </mxEditor>
