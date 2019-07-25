@@ -51,7 +51,8 @@ const {
   mxXmlCanvas2D,
   mxImage,
   mxResources,
-  mxStylesheet
+  mxStylesheet,
+  mxDefaultToolbar
 } = new mxGraphFactory()
 
 export default {
@@ -88,11 +89,12 @@ export default {
     addToWindow('mxImage', mxImage)
     addToWindow('mxResources', mxResources)
     addToWindow('mxStylesheet', mxStylesheet)
+    addToWindow('mxDefaultToolbar', mxDefaultToolbar)
     addToWindow('onInit', this.onInit)
   },
 
   mounted() {
-    this.editor = this.createEditor('../static/examples/editors/config/diagrameditor.xml')
+    this.editor = this.createEditor('https://raw.githubusercontent.com/Lakshamana/mxgraph-prototype-editor/master/src/static/examples/editors/config/diagrameditor.xml')
   },
 
   beforeDestroy() {
