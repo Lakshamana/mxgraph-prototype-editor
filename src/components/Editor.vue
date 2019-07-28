@@ -184,7 +184,7 @@ export default {
       // Defines an icon for creating new connections in the connection handler.
       // This will automatically disable the highlighting of the source vertex.
       mxConnectionHandler.prototype.connectImage = new mxImage(
-        '../assets/connector.gif',
+        'http://localhost:3000/config/diagrameditor.xml',
         16,
         16
       )

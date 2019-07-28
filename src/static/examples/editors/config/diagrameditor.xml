@@ -169,7 +169,7 @@
 			<add as="straightConnector">
 				<add as="shape" value="connector"/>
 				<add as="endArrow" value="classic"/>
-				<add as="edgeStyle">null</add>
+				<add as="edgeStyle" value="straightEdgeStyle"/>
 			</add>
 			<add as="arrowConnector">
 				<add as="shape" value="arrow"/>
