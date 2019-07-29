@@ -3,7 +3,9 @@
     <div id="page">
       <div id="header">
         <div id="headerimg">
-          <h1 id="title">mxDraw</h1>
+          <h1 id="title">
+            mxDraw
+          </h1>
         </div>
       </div>
       <div id="mainActions">
@@ -15,15 +17,21 @@
           {{ action }}
         </button>
       </div>
-      <div ref="selectActions" id="selectActions"></div>
+      <div
+        id="selectActions"
+        ref="selectActions"
+      />
       <Editor ref="wrapper" />
-      <div ref="zoomActions" id="zoomActions"></div>
+      <div
+        id="zoomActions"
+        ref="zoomActions"
+      />
       <div id="footer">
         <p id="status">
           <!-- Status Here -->
           Loading...
         </p>
-        <br />
+        <br>
       </div>
     </div>
   </div>
@@ -36,7 +44,7 @@ import Editor from './components/Editor'
 const { mxUtils } = mxGraphFactory
 
 export default {
-  name: 'app',
+  name: 'App',
 
   components: {
     Editor

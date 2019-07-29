@@ -13,75 +13,75 @@
 	</ui>
 	<Array as="templates">
 		<add as="group">
-			<Group label="" href="">
+			<Group label="" href="" type="group">
 				<mxCell vertex="1" style="group" connectable="0"/>
 			</Group>
 		</add>
 		<add as="connector">
-			<Connector label="" href="">
+			<Connector label="" href="" type="connector">
 				<mxCell edge="1">
 					<mxGeometry as="geometry" relative="1"/>
 				</mxCell>
 			</Connector>
 		</add>
 		<add as="container">
-			<Container label="Container" href="">
+			<Container label="Container" href="" type="container">
 				<mxCell vertex="1" style="swimlane" connectable="0">
 					<mxGeometry as="geometry" width="200" height="200"/>
 				</mxCell>
 			</Container>
 		</add>
 		<add as="rectangle">
-			<Rect label="Rectangle" href="">
+			<Rect label="Rectangle" href="" type="rectangle">
 				<mxCell vertex="1">	
 					<mxGeometry as="geometry" width="80" height="40"/>
 				</mxCell>
 			</Rect>
 		</add>
 		<add as="text">
-			<Text label="Text Here" href="">
+			<Text label="Text Here" href="" type="text">
 				<mxCell vertex="1" style="text">	
 					<mxGeometry as="geometry" width="80" height="20"/>
 				</mxCell>
 			</Text>
 		</add>
 		<add as="image">
-			<Image label="" href="">
+			<Image label="" href="" type="image">
 				<mxCell vertex="1" style="image">	
 					<mxGeometry as="geometry" width="80" height="50"/>
 				</mxCell>
 			</Image>
 		</add>
 		<add as="rounded">
-			<Roundrect label="Rounded" href="">
+			<Roundrect label="Rounded" href="" type="rounded">
 				<mxCell vertex="1" style="rounded">		
 					<mxGeometry as="geometry" width="80" height="40"/>
 				</mxCell>
 			</Roundrect>
 		</add>
 		<add as="shape">
-			<Shape label="Shape" href="">
+			<Shape label="Shape" href="" type="shape">
 				<mxCell vertex="1" style="ellipse">		
 					<mxGeometry as="geometry" width="60" height="60"/>
 				</mxCell>
 			</Shape>
 		</add>
 		<add as="actor">
-			<Shape label="Shape" href="">
+			<Shape label="Shape" href="" type="actor">
 				<mxCell vertex="1" style="actor">		
 					<mxGeometry as="geometry" width="40" height="60"/>
 				</mxCell>
 			</Shape>
 		</add>
 		<add as="cloud">
-			<Shape label="Shape" href="">
+			<Shape label="Shape" href="" type="cloud">
 				<mxCell vertex="1" style="cloud">		
 					<mxGeometry as="geometry" width="80" height="60"/>
 				</mxCell>
 			</Shape>
 		</add>
 		<add as="hline">
-			<Shape label="" href="">
+			<Shape label="" href="" type="hline">
 				<mxCell vertex="1" style="ellipse">		
 					<mxGeometry as="geometry" width="60" height="10"/>
 				</mxCell>

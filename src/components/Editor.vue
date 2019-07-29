@@ -1,24 +1,47 @@
 <template>
   <div class="columns is-centered">
     <div class="column is-10">
-      <table border="0" width="730px">
+      <table
+        border="0"
+        width="730px"
+      >
         <tr>
-          <td id="toolbar" valign="top">
+          <td
+            id="toolbar"
+            valign="top"
+          >
             <!-- Toolbar Here -->
           </td>
-          <td valign="top" ref="graphContainer" id="graphContainer">
-            <div id="graph" tabindex="-1">
+          <td
+            id="graphContainer"
+            ref="graphContainer"
+            valign="top"
+          >
+            <div
+              id="graph"
+              tabindex="-1"
+            >
               <!-- Graph Here -->
-              <center ref="splash" id="splash">
-                <img src="../static/examples/editors/images/loading.gif" />
+              <center
+                id="splash"
+                ref="splash"
+              >
+                <img src="../static/examples/editors/images/loading.gif">
               </center>
             </div>
-            <textarea ref="xml" id="xml"></textarea>
+            <textarea
+              id="xml"
+              ref="xml"
+            />
           </td>
         </tr>
       </table>
       <span class="source-ipt">
-        <input ref="source" id="source" type="checkbox" />Source
+        <input
+          id="source"
+          ref="source"
+          type="checkbox"
+        >Source
       </span>
     </div>
   </div>
@@ -94,7 +117,9 @@ export default {
   },
 
   mounted() {
-    this.editor = this.createEditor('http://localhost:3000/config/diagrameditor.xml')
+    this.editor = this.createEditor(
+      'http://localhost:3000/config/diagrameditor.xml'
+    )
   },
 
   beforeDestroy() {
@@ -129,13 +154,13 @@ export default {
           mxObjectCodec.allowEval = false
 
           // Adds active border for panning inside the container
-          editor.graph.createPanningManager = function() {
-            const pm = new mxPanningManager(this)
-            pm.border = 30
-            return pm
-          }
+          // editor.graph.createPanningManager = function() {
+          //   const pm = new mxPanningManager(this);
+          //   pm.border = 30;
+          //   return pm;
+          // };
 
-          editor.graph.allowAutoPanning = true
+          // editor.graph.allowAutoPanning = true
           editor.graph.timerAutoScroll = true
 
           // Updates the window title after opening new files
@@ -184,7 +209,7 @@ export default {
       // Defines an icon for creating new connections in the connection handler.
       // This will automatically disable the highlighting of the source vertex.
       mxConnectionHandler.prototype.connectImage = new mxImage(
-        'http://localhost:3000/config/diagrameditor.xml',
+        'http://localhost:3000/images/connector.gif',
         16,
         16
       )
@@ -220,6 +245,28 @@ export default {
           mxEvent.consume(evt)
         }
       })
+
+      // Listens vertexes's connect event -- test!
+      editor.graph.connectionHandler.addListener(
+        mxEvent.CONNECT,
+        (sender, evt) => {
+          const edge = evt.getProperty('cell')
+          const src = editor.graph.getModel().getTerminal(edge, true)
+          const trg = editor.graph.getModel().getTerminal(edge, false)
+          const obj = {
+            src: src.value.attributes['type'].nodeValue,
+            trg: trg.value.attributes['type'].nodeValue
+          }
+          console.log(`[CONNECT]`, obj)
+
+          // Add a business rule -- test!
+          // E.g., if src type is as same as trg type
+          if (obj.src === obj.trg) {
+            editor.graph.removeCells([edge], true)
+            alert("Can't create edge between equal figures")
+          }
+        }
+      )
 
       // Defines a new action to switch between
       // XML and graphical display
