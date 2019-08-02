@@ -1,39 +1,6 @@
 <template>
   <div id="app">
-    <div id="page">
-      <div id="header">
-        <div id="headerimg">
-          <h1 id="title">
-            mxDraw
-          </h1>
-        </div>
-      </div>
-      <div id="mainActions">
-        <button
-          v-for="action in actions"
-          :key="action"
-          @click="execute(action)"
-        >
-          {{ action }}
-        </button>
-      </div>
-      <div
-        id="selectActions"
-        ref="selectActions"
-      />
-      <Editor ref="wrapper" />
-      <div
-        id="zoomActions"
-        ref="zoomActions"
-      />
-      <div id="footer">
-        <p id="status">
-          <!-- Status Here -->
-          Loading...
-        </p>
-        <br>
-      </div>
-    </div>
+    <Editor ref="wrapper" />
   </div>
 </template>
 
@@ -50,7 +17,7 @@ export default {
     Editor
   },
 
-  data() {
+  data () {
     return {
       actions: [
         'group',
@@ -69,7 +36,7 @@ export default {
     }
   },
 
-  mounted() {
+  mounted () {
     if (mxUtils) {
       // Create select actions in page
       const selectActionsNode = this.$refs.selectActions
@@ -96,7 +63,7 @@ export default {
   },
 
   methods: {
-    execute(action) {
+    execute (action) {
       this.$refs.wrapper.editor.execute(action)
     }
   }
@@ -105,12 +72,11 @@ export default {
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 
 #mainActions {

@@ -1,46 +1,46 @@
 <template>
-  <div class="container">
+  <div class="container is-fullwidth">
     <div class="columns is-centered">
-      <div class="column is-10">
-        <div
-          id="toolbar"
-          class="columns"
-        />
-        <div
-          id="graphContainer"
-          class="columns"
-        >
-          <div class="graph">
-            <center
-              id="splash"
-              ref="splash"
-            >
-              <img src="../static/examples/editors/images/loading.gif">
-            </center>
-          </div>
-          <textarea
-            id="xml"
-            ref="xml"
-          />
-        </div>
-        <!-- <table border="0" width="730px">
+      <div class="column is-12">
+        <table class="table">
           <tr>
-            <td id="toolbar" colspan="3" valign="top"></td>
+            <td>
+              <div
+                id="toolbar"
+                valign="top"
+              />
+            </td>
           </tr>
           <tr>
-            <td id="graphContainer" ref="graphContainer" valign="top">
-              <div id="graph" tabindex="-1">
-                <center id="splash" ref="splash">
+            <td
+              id="graphContainer"
+              ref="graphContainer"
+              valign="top"
+            >
+              <div
+                id="graph"
+                tabindex="-1"
+              >
+                <center
+                  id="splash"
+                  ref="splash"
+                >
                   <img src="../static/examples/editors/images/loading.gif">
                 </center>
               </div>
-              <textarea id="xml" ref="xml" />
+              <textarea
+                id="xml"
+                ref="xml"
+              />
             </td>
           </tr>
-        </table>-->
+        </table>
         <span class="source-ipt">
-          <input id="source"
-ref="source" type="checkbox" >Source
+          <input
+            id="source"
+            ref="source"
+            type="checkbox"
+          >Source
         </span>
       </div>
     </div>
@@ -48,8 +48,8 @@ ref="source" type="checkbox" >Source
 </template>
 
 <script>
-import { addToWindow } from '../service/window.service';
-import mxGraphFactory from 'mxgraph';
+import { addToWindow } from '../service/window.service'
+import mxGraphFactory from 'mxgraph'
 const {
   mxGeometry,
   mxGraph,
@@ -158,7 +158,7 @@ export default {
             const pm = new mxPanningManager(this)
             pm.border = 30
             return pm
-          };
+          }
 
           editor.graph.allowAutoPanning = false
           editor.graph.timerAutoScroll = true
@@ -167,7 +167,7 @@ export default {
           const title = document.title
           const funct = sender => {
             document.title = title + ' - ' + sender.getTitle()
-          };
+          }
 
           editor.addListener(mxEvent.OPEN, funct)
 
@@ -201,7 +201,7 @@ export default {
       // Alt disables guides
       mxGuide.prototype.isEnabledForEvent = evt => {
         return !mxEvent.isAltDown(evt)
-      };
+      }
 
       // Enables snapping waypoints to terminals
       mxEdgeHandler.prototype.snapToTerminals = true
@@ -228,7 +228,7 @@ export default {
       if (title != null) {
         const f = sender => {
           title.innerHTML = 'mxDraw - ' + sender.getTitle()
-        };
+        }
 
         editor.addListener(mxEvent.ROOT, f)
         f(editor)
@@ -248,26 +248,39 @@ export default {
 
       // Listens vertexes's connect event -- test!
 
-      editor.graph.connectionHandler.addListener(
-        mxEvent.CONNECT,
-        (sender, evt) => {
-          const edge = evt.getProperty('cell')
-          const src = editor.graph.getModel().getTerminal(edge, true)
-          const trg = editor.graph.getModel().getTerminal(edge, false)
-          const obj = {
-            src: src.value.attributes['type'].nodeValue,
-            trg: trg.value.attributes['type'].nodeValue
-          }
-          console.log(`[CONNECT]`, obj)
-
-          // Add a business rule -- test!
-          // E.g., if src type is as same as trg type
-          if (obj.src === obj.trg) {
-            editor.graph.removeCells([edge], true)
-            alert("Can't create edge between equal figures")
-          }
+      editor.graph.connectionHandler.addListener(mxEvent.CONNECT, (sender, evt) => {
+        const edge = evt.getProperty('cell')
+        const src = editor.graph.getModel().getTerminal(edge, true)
+        const trg = editor.graph.getModel().getTerminal(edge, false)
+        const obj = {
+          src: src.value.attributes['type'].nodeValue,
+          trg: trg.value.attributes['type'].nodeValue
         }
-      )
+        console.log(`[CONNECT]`, obj)
+
+        // Add a business rule -- test!
+        // E.g., if src type is as same as trg type
+        if (obj.src === obj.trg) {
+          editor.graph.removeCells([edge], true)
+          alert("Can't create edge between equal figures")
+        }
+      })
+
+      editor.graph.addListener(mxEvent.MOVE_CELLS, (sender, evt) => {
+        const cell = editor.graph.getSelectionCell()
+        let { x, y } = editor.graph.view.getState(cell).origin
+        const dx = evt.getProperty('dx')
+        const dy = evt.getProperty('dy')
+        x += dx
+        y += dy
+        console.log(x + dx, y + dy)
+        if (x < 0) {
+          cell.geometry.x = 0
+        }
+        if (y < 0) {
+          cell.geometry.y = 0
+        }
+      })
 
       // Defines a new action to switch between
       // XML and graphical display
@@ -278,8 +291,8 @@ export default {
 
       const funct = function (editor) {
         if (sourceInput.checked) {
-          graphNode.style.display = 'none';
-          textNode.style.display = 'inline';
+          graphNode.style.display = 'none'
+          textNode.style.display = 'inline'
 
           const enc = new mxCodec()
           const node = enc.encode(editor.graph.getModel())
@@ -288,7 +301,7 @@ export default {
           textNode.originalValue = textNode.value
           textNode.focus()
         } else {
-          graphNode.style.display = '';
+          graphNode.style.display = ''
 
           if (textNode.value !== textNode.originalValue) {
             const doc = mxUtils.parseXml(textNode.value)
@@ -303,7 +316,7 @@ export default {
             mxUtils.clearSelection()
           }
 
-          textNode.style.display = 'none';
+          textNode.style.display = 'none'
 
           // Moves the focus back to the graph
           editor.graph.container.focus()
@@ -353,9 +366,9 @@ export default {
 
           // Requests image if request is valid
           if (w > 0 && h > 0) {
-            const name = 'export.png';
-            const format = 'png';
-            const bg = '&bg=#FFFFFF';
+            const name = 'export.png'
+            const format = 'png'
+            const bg = '&bg=#FFFFFF'
 
             new mxXmlRequest(
               editor.urlImage,
@@ -390,7 +403,7 @@ export default {
               : svgDoc.createElement('svg')
 
           if (root.style != null) {
-            root.style.backgroundColor = '#FFFFFF';
+            root.style.backgroundColor = '#FFFFFF'
           } else {
             root.setAttribute('style', 'background-color:#FFFFFF')
           }
@@ -433,14 +446,14 @@ export default {
             svgCanvas
           )
 
-          const name = 'export.svg';
+          const name = 'export.svg'
           const xml = encodeURIComponent(mxUtils.getXml(root))
 
           new mxXmlRequest(
             editor.urlEcho,
             'filename=' + name + '&format=svg' + '&xml=' + xml
           ).simulate(document, '_blank')
-        };
+        }
         editor.addAction('exportSvg', exportSvg)
       }
     }
@@ -451,21 +464,21 @@ export default {
 <style scoped>
 #graphContainer {
   border: 1px solid black;
+  background-color: #ededed;
 }
 
 #graph {
-  position: relative;
-  height: 480px;
-  width: 684px;
-  overflow: hidden;
+  overflow: auto;
+  height: 75vh;
+  width: 90vw;
   cursor: default;
 }
 
 #toolbar {
-  width: 540px;
-  padding: 20px;
   height: 50px;
-  background-color: #7e7e7e;
+  border-radius: 10px;
+  border: 1px solid black;
+  vertical-align: middle;
 }
 
 #xml {
@@ -481,6 +494,11 @@ export default {
 
 .source-ipt {
   float: right;
-  padding-right: 36px;
+  padding-right: 60px;
+}
+
+.table {
+  margin-left: auto;
+  margin-right: auto;
 }
 </style>
