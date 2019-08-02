@@ -1,107 +1,95 @@
 <mxEditor defaultGroup="group" defaultEdge="connector">
-	<include name="http://localhost:3000/config/editor-commons.xml"/>
-	<add as="onInit"><![CDATA[
+	<include name="http://localhost:3000/config/editor-commons.xml" />
+	<add as="onInit">
+		<![CDATA[
 		function ()
 		{
 			onInit(this);
 		}
-	]]></add>
+	]]>
+	</add>
 	<ui>
-		<add as="graph" element="graph"/>
-		<add as="status" element="status"/>
-		<add as="toolbar" element="toolbar"/>
+		<add as="graph" element="graph" />
+		<add as="status" element="status" />
+		<add as="toolbar" element="toolbar" />
 	</ui>
 	<Array as="templates">
-		<add as="group">
-			<Group label="" href="" type="group">
-				<mxCell vertex="1" style="group" connectable="0"/>
-			</Group>
-		</add>
 		<add as="connector">
 			<Connector label="" href="" type="connector">
 				<mxCell edge="1">
-					<mxGeometry as="geometry" relative="1"/>
+					<mxGeometry as="geometry" relative="1" />
 				</mxCell>
 			</Connector>
 		</add>
-		<add as="container">
-			<Container label="Container" href="" type="container">
-				<mxCell vertex="1" style="swimlane" connectable="0">
-					<mxGeometry as="geometry" width="200" height="200"/>
+		<add as="normal">
+			<Normal label="">
+				<mxCell vertex="1" style="normal" connectable="1">
+					<mxGeometry as="geometry" width="50" height="50" />
 				</mxCell>
-			</Container>
+			</Normal>
 		</add>
-		<add as="rectangle">
-			<Rect label="Rectangle" href="" type="rectangle">
-				<mxCell vertex="1">	
-					<mxGeometry as="geometry" width="80" height="40"/>
+		<add as="decomposed">
+			<Decomposed label="">
+				<mxCell vertex="1" style="decomposed" connectable="1">
+					<mxGeometry as="geometry" width="50" height="50" />
 				</mxCell>
-			</Rect>
+			</Decomposed>
 		</add>
-		<add as="text">
-			<Text label="Text Here" href="" type="text">
-				<mxCell vertex="1" style="text">	
-					<mxGeometry as="geometry" width="80" height="20"/>
+		<add as="agent">
+			<Agent label="">
+				<mxCell vertex="1" style="agent" connectable="1">
+					<mxGeometry as="geometry" width="50" height="50" />
 				</mxCell>
-			</Text>
+			</Agent>
 		</add>
-		<add as="image">
-			<Image label="" href="" type="image">
-				<mxCell vertex="1" style="image">	
-					<mxGeometry as="geometry" width="80" height="50"/>
+		<add as="workgroup">
+			<Workgroup label="">
+				<mxCell vertex="1" style="workgroup" connectable="1">
+					<mxGeometry as="geometry" width="50" height="50" />
 				</mxCell>
-			</Image>
+			</Workgroup>
 		</add>
-		<add as="rounded">
-			<Roundrect label="Rounded" href="" type="rounded">
-				<mxCell vertex="1" style="rounded">		
-					<mxGeometry as="geometry" width="80" height="40"/>
+		<add as="artifact">
+			<Artifact label="">
+				<mxCell vertex="1" style="artifact" connectable="1">
+					<mxGeometry as="geometry" width="50" height="50" />
 				</mxCell>
-			</Roundrect>
+			</Artifact>
 		</add>
-		<add as="shape">
-			<Shape label="Shape" href="" type="shape">
-				<mxCell vertex="1" style="ellipse">		
-					<mxGeometry as="geometry" width="60" height="60"/>
+		<add as="join">
+			<Join label="">
+				<mxCell vertex="1" style="join_or_end_end" connectable="1">
+					<mxGeometry as="geometry" width="50" height="50" />
 				</mxCell>
-			</Shape>
+			</Join>
 		</add>
-		<add as="actor">
-			<Shape label="Shape" href="" type="actor">
-				<mxCell vertex="1" style="actor">		
-					<mxGeometry as="geometry" width="40" height="60"/>
+		<add as="branch">
+			<Branch label="">
+				<mxCell vertex="1" style="branch_or_end_end" connectable="1">
+					<mxGeometry as="geometry" width="50" height="50" />
 				</mxCell>
-			</Shape>
-		</add>
-		<add as="cloud">
-			<Shape label="Shape" href="" type="cloud">
-				<mxCell vertex="1" style="cloud">		
-					<mxGeometry as="geometry" width="80" height="60"/>
-				</mxCell>
-			</Shape>
-		</add>
-		<add as="hline">
-			<Shape label="" href="" type="hline">
-				<mxCell vertex="1" style="ellipse">		
-					<mxGeometry as="geometry" width="60" height="10"/>
-				</mxCell>
-			</Shape>
+			</Branch>
 		</add>
 	</Array>
 	<mxGraph as="graph" alternateEdgeStyle="verticalConnector" allowLoops="1" dropEnabled="1">
-		<add as="isAutoSizeCell"><![CDATA[
+		<add as="isAutoSizeCell">
+			<![CDATA[
 			function(cell)
 			{
 				return mxUtils.isNode(this.model.getValue(cell), 'text');
 			}
-		]]></add>
-		<add as="isSwimlane"><![CDATA[
+		]]>
+		</add>
+		<add as="isSwimlane">
+			<![CDATA[
 			function (cell)
 			{
 				return mxUtils.isNode(this.model.getValue(cell), 'container');
 			}
-		]]></add>
-		<add as="getTooltipForCell"><![CDATA[
+		]]>
+		</add>
+		<add as="getTooltipForCell">
+			<![CDATA[
 			function(cell)
 			{
 				var label = cell.getAttribute('label');
@@ -113,143 +101,165 @@
 						'Connections: ' + cell.getEdgeCount()+
 						'<br>Children: ' + cell.getChildCount();
 			}
-		]]></add>
-		<add as="convertValueToString"><![CDATA[
+		]]>
+		</add>
+		<add as="convertValueToString">
+			<![CDATA[
 			function(cell)
 			{
 				return cell.getAttribute('label');
 			}
-		]]></add>
+		]]>
+		</add>
 		<mxStylesheet as="stylesheet">
-			<add as="text">
-				<add as="shape" value="rectangle"/>
-				<add as="perimeter" value="rectanglePerimeter"/>
-				<add as="fontSize" value="12"/>
-				<add as="align" value="left"/>
-				<add as="verticalAlign" value="top"/>
-				<add as="shadow" value="0"/>
-				<add as="strokeColor" value="none"/>
-				<add as="fillColor" value="none"/>
-				<add as="gradientColor" value="none"/>
+			<add as="normal">
+				<add as="shape" value="image" />
+				<add as="perimeter" value="rectanglePerimeter" />
+				<add as="fontSize" value="10" />
+				<add as="align" value="center" />
+				<add as="verticalAlign" value="middle" />
+				<add as="image" value="http://localhost:3000/images/spm/normal_blank.png" />
 			</add>
-			<add as="defaultVertex" extend="text">
-				<add as="shape" value="rectangle"/>
-				<add as="fontSize" value="11"/>
-				<add as="align" value="center"/>
-				<add as="verticalAlign" value="middle"/>
-				<add as="shadow" value="1"/>
-				<add as="strokeColor" value="#C3D9FF"/>
-				<add as="fillColor" value="#C3D9FF"/>
-				<add as="gradientColor" value="white"/>
+			<add as="decomposed">
+				<add as="shape" value="image" />
+				<add as="perimeter" value="rectanglePerimeter" />
+				<add as="fontSize" value="10" />
+				<add as="align" value="center" />
+				<add as="verticalAlign" value="middle" />
+				<add as="image" value="http://localhost:3000/images/spm/decomposed_blank.png" />
 			</add>
-			<add as="group">
-				<add as="shape" value="rectangle"/>
-				<add as="perimeter" value="rectanglePerimeter"/>
-				<add as="fontSize" value="10"/>
-				<add as="align" value="center"/>
-				<add as="verticalAlign" value="middle"/>
-				<add as="strokeColor" value="gray"/>
-				<add as="dashed" value="1"/>
+			<add as="agent">
+				<add as="shape" value="image" />
+				<add as="perimeter" value="rectanglePerimeter" />
+				<add as="fontSize" value="10" />
+				<add as="align" value="center" />
+				<add as="verticalAlign" value="middle" />
+				<add as="image" value="http://localhost:3000/images/spm/agent.png" />
 			</add>
-			<add as="defaultEdge">
-				<add as="shape" value="connector"/>
-				<add as="fontSize" value="10"/>
-				<add as="align" value="center"/>
-				<add as="verticalAlign" value="middle"/>
-				<add as="rounded" value="1"/>
-				<add as="labelBackgroundColor" value="white"/>
-				<add as="strokeColor" value="#36393D"/>
-				<add as="strokeWidth" value="1"/>
-				<add as="edgeStyle" value="elbowEdgeStyle"/>
-				<add as="endArrow" value="classic"/>
+			<add as="workgroup">
+				<add as="shape" value="image" />
+				<add as="perimeter" value="rectanglePerimeter" />
+				<add as="fontSize" value="10" />
+				<add as="align" value="center" />
+				<add as="verticalAlign" value="middle" />
+				<add as="image" value="http://localhost:3000/images/spm/group.png" />
 			</add>
-			<add as="verticalConnector">
-				<add as="elbow" value="vertical"/>
+			<add as="artifact_empty">
+				<add as="shape" value="image" />
+				<add as="perimeter" value="rectanglePerimeter" />
+				<add as="fontSize" value="10" />
+				<add as="align" value="center" />
+				<add as="verticalAlign" value="middle" />
+				<add as="image" value="http://localhost:3000/images/spm/artifact_empty.png" />
 			</add>
-			<add as="straightConnector">
-				<add as="shape" value="connector"/>
-				<add as="endArrow" value="classic"/>
-				<add as="edgeStyle" value="straightEdgeStyle"/>
+			<add as="artifact_full">
+				<add as="shape" value="image" />
+				<add as="perimeter" value="rectanglePerimeter" />
+				<add as="fontSize" value="10" />
+				<add as="align" value="center" />
+				<add as="verticalAlign" value="middle" />
+				<add as="image" value="http://localhost:3000/images/spm/artifact_full.png" />
 			</add>
-			<add as="arrowConnector">
-				<add as="shape" value="arrow"/>
-				<add as="fillColor" value="#C3D9FF"/>
-				<add as="endSize" value="20"/>
-				<remove as="edgeStyle"/>
+			<add as="branch_or_end_end">
+				<add as="shape" value="image" />
+				<add as="perimeter" value="rectanglePerimeter" />
+				<add as="fontSize" value="10" />
+				<add as="align" value="center" />
+				<add as="verticalAlign" value="middle" />
+				<add as="image" value="http://localhost:3000/images/spm/branch_or_end_end.gif" />
 			</add>
-			<add as="swimlane">
-				<add as="shape" value="swimlane"/>
-				<add as="shadow" value="0"/>
-				<add as="startSize" value="23"/>
-				<add as="align" value="center"/>
-				<add as="verticalAlign" value="top"/>
-				<add as="strokeColor" value="#EEEEEE"/>
-				<add as="fillColor" value="#D4D4D4"/>
+			<add as="branch_or_start_start">
+				<add as="shape" value="image" />
+				<add as="perimeter" value="rectanglePerimeter" />
+				<add as="fontSize" value="10" />
+				<add as="align" value="center" />
+				<add as="verticalAlign" value="middle" />
+				<add as="image" value="http://localhost:3000/images/spm/branch_or_start_start.gif" />
 			</add>
-			<add as="rounded">
-				<add as="rounded" value="1"/>
+			<add as="branch_or_end_start">
+				<add as="shape" value="image" />
+				<add as="perimeter" value="rectanglePerimeter" />
+				<add as="fontSize" value="10" />
+				<add as="align" value="center" />
+				<add as="verticalAlign" value="middle" />
+				<add as="image" value="http://localhost:3000/images/spm/branch_or_end_start.gif" />
 			</add>
-			<add as="ellipse">
-				<add as="shape" value="ellipse"/>
-				<add as="perimeter" value="ellipsePerimeter"/>
-				<add as="strokeColor" value="#CDEB8B"/>
-				<add as="fillColor" value="#CDEB8B"/>
+			<add as="branch_and_end_end">
+				<add as="shape" value="image" />
+				<add as="perimeter" value="rectanglePerimeter" />
+				<add as="fontSize" value="10" />
+				<add as="align" value="center" />
+				<add as="verticalAlign" value="middle" />
+				<add as="image" value="http://localhost:3000/images/spm/branch_and_end_end.gif" />
 			</add>
-			<add as="doubleEllipse" extend="ellipse">
-				<add as="shape" value="doubleEllipse"/>
+			<add as="branch_and_start_start">
+				<add as="shape" value="image" />
+				<add as="perimeter" value="rectanglePerimeter" />
+				<add as="fontSize" value="10" />
+				<add as="align" value="center" />
+				<add as="verticalAlign" value="middle" />
+				<add as="image" value="http://localhost:3000/images/spm/branch_and_start_start.gif" />
 			</add>
-			<add as="rhombus">
-				<add as="shape" value="rhombus"/>
-				<add as="perimeter" value="rhombusPerimeter"/>
-				<add as="strokeColor" value="#FFCF8A"/>
-				<add as="fillColor" value="#FFCF8A"/>
+			<add as="branch_and_end_start">
+				<add as="shape" value="image" />
+				<add as="perimeter" value="rectanglePerimeter" />
+				<add as="fontSize" value="10" />
+				<add as="align" value="center" />
+				<add as="verticalAlign" value="middle" />
+				<add as="image" value="http://localhost:3000/images/spm/branch_and_end_start.gif" />
 			</add>
-			<add as="triangle" extend="rhombus">
-				<add as="shape" value="triangle"/>
-				<add as="perimeter" value="trianglePerimeter"/>
-				<add as="align" value="left"/>
+			<add as="join_or_end_end">
+				<add as="shape" value="image" />
+				<add as="perimeter" value="rectanglePerimeter" />
+				<add as="fontSize" value="10" />
+				<add as="align" value="center" />
+				<add as="verticalAlign" value="middle" />
+				<add as="image" value="http://localhost:3000/images/spm/join_or_end_end.gif" />
 			</add>
-			<add as="hexagon">
-				<add as="shape" value="hexagon"/>
+			<add as="join_or_start_start">
+				<add as="shape" value="image" />
+				<add as="perimeter" value="rectanglePerimeter" />
+				<add as="fontSize" value="10" />
+				<add as="align" value="center" />
+				<add as="verticalAlign" value="middle" />
+				<add as="image" value="http://localhost:3000/images/spm/join_or_start_start.gif" />
 			</add>
-			<add as="actor">
-				<add as="shape" value="actor"/>
-				<add as="strokeColor" value="#FFC7C7"/>
-				<add as="fillColor" value="#FFC7C7"/>
+			<add as="join_or_end_start">
+				<add as="shape" value="image" />
+				<add as="perimeter" value="rectanglePerimeter" />
+				<add as="fontSize" value="10" />
+				<add as="align" value="center" />
+				<add as="verticalAlign" value="middle" />
+				<add as="image" value="http://localhost:3000/images/spm/join_or_end_start.gif" />
 			</add>
-			<add as="cloud">
-				<add as="shape" value="cloud"/>
-				<add as="perimeter" value="ellipsePerimeter"/>
-				<add as="strokeColor" value="#CDEB8B"/>
-				<add as="fillColor" value="#CDEB8B"/>
+			<add as="join_and_end_end">
+				<add as="shape" value="image" />
+				<add as="perimeter" value="rectanglePerimeter" />
+				<add as="fontSize" value="10" />
+				<add as="align" value="center" />
+				<add as="verticalAlign" value="middle" />
+				<add as="image" value="http://localhost:3000/images/spm/join_and_end_end.gif" />
 			</add>
-			<add as="cylinder">
-				<add as="shape" value="cylinder"/>
-				<add as="spacingTop" value="10"/>
-				<add as="strokeColor" value="#4096EE"/>
-				<add as="fillColor" value="#4096EE"/>
+			<add as="join_and_start_start">
+				<add as="shape" value="image" />
+				<add as="perimeter" value="rectanglePerimeter" />
+				<add as="fontSize" value="10" />
+				<add as="align" value="center" />
+				<add as="verticalAlign" value="middle" />
+				<add as="image" value="http://localhost:3000/images/spm/join_and_start_start.gif" />
 			</add>
-			<add as="hline">
-				<add as="shape" value="line"/>
-				<add as="strokeWidth" value="3"/>
-				<add as="perimeter" value="rectanglePerimeter"/>
-				<add as="fontColor" value="black"/>
-				<add as="fontSize" value="10"/>
-				<add as="align" value="center"/>
-				<add as="verticalAlign" value="bottom"/>
-				<add as="strokeColor" value="#36393D"/>
-			</add>
-			<add as="image">
-				<add as="shape" value="image"/>
-				<add as="perimeter" value="rectanglePerimeter"/>
-				<add as="fontSize" value="10"/>
-				<add as="align" value="center"/>
-				<add as="verticalAlign" value="middle"/>
-				<add as="image" value="http://localhost:3000/images/draw/mxlogo.jpg"/>
+			<add as="join_and_end_start">
+				<add as="shape" value="image" />
+				<add as="perimeter" value="rectanglePerimeter" />
+				<add as="fontSize" value="10" />
+				<add as="align" value="center" />
+				<add as="verticalAlign" value="middle" />
+				<add as="image" value="http://localhost:3000/images/spm/join_and_end_start.gif" />
 			</add>
 		</mxStylesheet>
 		<mxGraphModel as="model">
-			<add as="valueForCellChanged"><![CDATA[
+			<add as="valueForCellChanged">
+				<![CDATA[
 				function(cell, value)
 				{
 					var previous = null;
@@ -275,58 +285,25 @@
 					
 					return previous;
 				}
-			]]></add>
+			]]>
+			</add>
 			<root>
 				<Diagram label="My Diagram" href="http://www.jgraph.com/" id="0">
-					<mxCell/>
+					<mxCell />
 				</Diagram>
 				<Layer label="Default Layer" id="1">
-					<mxCell parent="0"/>
+					<mxCell parent="0" />
 				</Layer>
 			</root>
 		</mxGraphModel>
 	</mxGraph>
 	<mxDefaultToolbar as="toolbar">
-		<add as="connect" mode="connect" icon="http://localhost:3000/images/connect.gif"><![CDATA[
-			function (editor)
-			{
-				if (editor.defaultEdge != null)
-				{
-					editor.defaultEdge.style = null;
-				}
-			}
-		]]></add>
-		<add as="connect" mode="connect" icon="http://localhost:3000/images/straight.gif"><![CDATA[
-			function (editor)
-			{
-				if (editor.defaultEdge != null)
-				{
-					editor.defaultEdge.style = 'straightConnector';
-				}
-			}
-		]]></add>
-		<add as="connect" mode="connect" icon="http://localhost:3000/images/arrow.gif"><![CDATA[
-			function (editor)
-			{
-				if (editor.defaultEdge != null)
-				{
-					editor.defaultEdge.style = 'arrowConnector';
-				}
-			}
-		]]></add>
-		<add as="Text" template="text" icon="http://localhost:3000/images/text.gif"/>
-		<add as="Container" template="container" icon="http://localhost:3000/images/swimlane.gif"/>
-		<add as="Rectangle" template="rectangle" icon="http://localhost:3000/images/rectangle.gif"/>
-		<add as="Rounded" template="rounded" icon="http://localhost:3000/images/rounded.gif"/>
-		<add as="Ellipse" template="shape" style="ellipse" icon="http://localhost:3000/images/ellipse.gif"/>
-		<add as="Double Ellipse" template="shape" style="doubleEllipse" icon="http://localhost:3000/images/doubleellipse.gif"/>
-		<add as="Rhombus" template="shape" style="rhombus" icon="http://localhost:3000/images/rhombus.gif"/>
-		<add as="Triangle" template="actor" style="triangle" icon="http://localhost:3000/images/triangle.gif"/>
-		<add as="Hexagon" template="cloud" style="hexagon" icon="http://localhost:3000/images/hexagon.gif"/>
-		<add as="Actor" template="actor" style="actor" icon="http://localhost:3000/images/actor.gif"/>
-		<add as="Cylinder" template="shape" style="cylinder" icon="http://localhost:3000/images/cylinder.gif"/>
-		<add as="Cloud" template="cloud" style="cloud" icon="http://localhost:3000/images/cloud.gif"/>
-		<add as="Line" template="hline" style="hline" icon="http://localhost:3000/images/hline.gif"/>
-		<add as="Image" template="image" icon="http://localhost:3000/images/image.gif"/>
+		<add as="Normal" template="normal" icon="http://localhost:3000/images/spm/normal.png" />
+		<add as="Decomposed" template="decomposed" icon="http://localhost:3000/images/spm/decomposed.png" />
+		<add as="Agent" template="agent" icon="http://localhost:3000/images/spm/agent.png" />
+		<add as="Workgroup" template="workgroup" icon="http://localhost:3000/images/spm/group.png" />
+		<add as="Artifact" template="artifact" icon="http://localhost:3000/images/spm/artifact_full.png" />
+		<add as="Join" template="join_or_end_end" icon="http://localhost:3000/images/spm/join.png" />
+		<add as="Branch" template="branch_or_end_end" icon="http://localhost:3000/images/spm/branch.png" />
 	</mxDefaultToolbar>
 </mxEditor>

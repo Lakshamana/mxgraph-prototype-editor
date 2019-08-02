@@ -1,61 +1,64 @@
 <mxEditor>
 	<ui>
-		<resource basename="http://localhost:3000/resources/app"/>
+		<resource basename="http://localhost:3000/resources/app" />
 	</ui>
 	<mxDefaultPopupMenu as="popupHandler">
-		<add as="cut" action="cut" icon="http://localhost:3000/images/cut.gif"/>
-		<add as="copy" action="copy" icon="http://localhost:3000/images/copy.gif"/>
-		<add as="paste" action="paste" icon="http://localhost:3000/images/paste.gif"/>
-		<separator/>
-		<add as="delete" action="delete" icon="http://localhost:3000/images/delete.gif" if="cell"/>
-		<separator/>
-		<add as="exitGroup" action="exitGroup" icon="http://localhost:3000/images/up.gif" if="notRoot"/>
-		<add as="enterGroup" action="enterGroup" icon="http://localhost:3000/images/down.gif" if="validRoot"/>
-		<separator/>
+		<add as="cut" action="cut" icon="http://localhost:3000/images/cut.gif" />
+		<add as="copy" action="copy" icon="http://localhost:3000/images/copy.gif" />
+		<add as="paste" action="paste" icon="http://localhost:3000/images/paste.gif" />
+		<separator />
+		<add as="delete" action="delete" icon="http://localhost:3000/images/delete.gif" if="cell" />
+		<separator />
+		<add as="exitGroup" action="exitGroup" icon="http://localhost:3000/images/up.gif" if="notRoot" />
+		<add as="enterGroup" action="enterGroup" icon="http://localhost:3000/images/down.gif" if="validRoot" />
+		<separator />
 		<add as="shape" if="cell">
-			<add as="group" action="group" icon="http://localhost:3000/images/group.gif" if="ncells"/>
-			<add as="ungroup" action="ungroup" icon="http://localhost:3000/images/ungroup.gif" if="cell"/>
-			<separator/>
-			<add as="removeFromParent" action="removeFromParent" if="cell"/>
-			<separator/>
-			<add as="collapse" action="collapse" icon="http://localhost:3000/images/collapse.gif" if="expandable"/>
-			<add as="expand" action="expand" icon="http://localhost:3000/images/expand.gif" if="collapsable"/>
-			<separator/>
-			<add as="toFront" action="toFront" icon="http://localhost:3000/images/tofront.gif" if="cell"/>
-			<add as="toBack" action="toBack" icon="http://localhost:3000/images/toback.gif" if="cell"/>
-			<separator/>
-			<add as="editStyle" action="editStyle" if="cell"/>
+			<add as="group" action="group" icon="http://localhost:3000/images/group.gif" if="ncells" />
+			<add as="ungroup" action="ungroup" icon="http://localhost:3000/images/ungroup.gif" if="cell" />
+			<separator />
+			<add as="removeFromParent" action="removeFromParent" if="cell" />
+			<separator />
+			<add as="collapse" action="collapse" icon="http://localhost:3000/images/collapse.gif" if="expandable" />
+			<add as="expand" action="expand" icon="http://localhost:3000/images/expand.gif" if="collapsable" />
+			<separator />
+			<add as="toFront" action="toFront" icon="http://localhost:3000/images/tofront.gif" if="cell" />
+			<add as="toBack" action="toBack" icon="http://localhost:3000/images/toback.gif" if="cell" />
+			<separator />
+			<add as="editStyle" action="editStyle" if="cell" />
 		</add>
 		<add as="format" if="cell">
-			<add as="fillColor" action="fillColor" icon="http://localhost:3000/images/fillcolor.gif" if="cell"/>
-			<add as="gradientColor" action="gradientColor" if="cell"/>
-			<add as="strokeColor" action="strokeColor" icon="http://localhost:3000/images/linecolor.gif" if="cell"/>
-			<separator/>
-			<add as="toggleRounded" action="toggleRounded" if="cell"/>
-			<add as="toggleShadow" action="toggleShadow" if="cell"/>
+			<add as="fillColor" action="fillColor" icon="http://localhost:3000/images/fillcolor.gif" if="cell" />
+			<add as="gradientColor" action="gradientColor" if="cell" />
+			<add as="strokeColor" action="strokeColor" icon="http://localhost:3000/images/linecolor.gif" if="cell" />
+			<separator />
+			<add as="toggleRounded" action="toggleRounded" if="cell" />
+			<add as="toggleShadow" action="toggleShadow" if="cell" />
 		</add>
 		<add as="font" if="cell">
-			<add as="fontColor" action="fontColor" icon="http://localhost:3000/images/fontcolor.gif" if="cell"/>
-			<add as="fontFamily" action="fontFamily" if="cell"/>
-			<add as="fontSize" action="fontSize" if="cell"/>
-			<separator/>
-			<add as="bold" action="bold" icon="http://localhost:3000/images/bold.gif" if="cell"/>
-			<add as="italic" action="italic" icon="http://localhost:3000/images/italic.gif" if="cell"/>
+			<add as="fontColor" action="fontColor" icon="http://localhost:3000/images/fontcolor.gif" if="cell" />
+			<add as="fontFamily" action="fontFamily" if="cell" />
+			<add as="fontSize" action="fontSize" if="cell" />
+			<separator />
+			<add as="bold" action="bold" icon="http://localhost:3000/images/bold.gif" if="cell" />
+			<add as="italic" action="italic" icon="http://localhost:3000/images/italic.gif" if="cell" />
 		</add>
-		<separator/>
-		<add as="properties" action="showProperties" icon="http://localhost:3000/images/properties.gif"/>
-		<separator/>
-		<add as="openHref" action="openHref" icon="http://localhost:3000/images/link.gif"/>
+		<separator />
+		<add as="properties" action="showProperties" icon="http://localhost:3000/images/properties.gif" />
+		<separator />
+		<add as="openHref" action="openHref" icon="http://localhost:3000/images/link.gif" />
 	</mxDefaultPopupMenu>
-	<include name="http://localhost:3000/config/keyhandler-commons.xml"/>
+	<include name="http://localhost:3000/config/keyhandler-commons.xml" />
 	<Array as="actions">
-		<add as="open"><![CDATA[
+		<add as="open">
+			<![CDATA[
 			function (editor)
 			{
 				editor.open(mxUtils.prompt('Enter filename', 'workflow.xml'));
 			}
-		]]></add>
-		<add as="openHref"><![CDATA[
+		]]>
+		</add>
+		<add as="openHref">
+			<![CDATA[
 			function (editor, cell)
 			{
 				cell = cell || editor.graph.getSelectionCell();
@@ -85,8 +88,10 @@
 					}
 				}
 			}
-		]]></add>
-		<add as="editStyle"><![CDATA[
+		]]>
+		</add>
+		<add as="editStyle">
+			<![CDATA[
 			function (editor)
 			{
 				var cell = editor.graph.getSelectionCell();
@@ -102,8 +107,10 @@
 					}
 				}
 			}
-		]]></add>
-		<add as="fillColor"><![CDATA[
+		]]>
+		</add>
+		<add as="fillColor">
+			<![CDATA[
 			function (editor)
 			{
 				var color = mxUtils.prompt(mxhttp://localhost:3000/resources.get('enterColorname'), 'red');
@@ -122,8 +129,10 @@
 					}
 				}
 			}
-		]]></add>
-		<add as="gradientColor"><![CDATA[
+		]]>
+		</add>
+		<add as="gradientColor">
+			<![CDATA[
 			function (editor)
 			{
 				var color = mxUtils.prompt(mxhttp://localhost:3000/resources.get('enterColorname'), 'white');
@@ -133,8 +142,10 @@
 					editor.graph.setCellStyles("gradientColor", color);
 				}
 			}
-		]]></add>
-		<add as="strokeColor"><![CDATA[
+		]]>
+		</add>
+		<add as="strokeColor">
+			<![CDATA[
 			function (editor)
 			{
 				var color = mxUtils.prompt(mxhttp://localhost:3000/resources.get('enterColorname'), 'red');
@@ -144,8 +155,10 @@
 					editor.graph.setCellStyles("strokeColor", color);
 				}
 			}
-		]]></add>
-		<add as="fontColor"><![CDATA[
+		]]>
+		</add>
+		<add as="fontColor">
+			<![CDATA[
 			function (editor)
 			{
 				var color = mxUtils.prompt(mxhttp://localhost:3000/resources.get('enterColorname'), 'red');
@@ -155,8 +168,10 @@
 					editor.graph.setCellStyles("fontColor", color);
 				}
 			}
-		]]></add>
-		<add as="fontFamily"><![CDATA[
+		]]>
+		</add>
+		<add as="fontFamily">
+			<![CDATA[
 			function (editor)
 			{
 				var family = mxUtils.prompt(mxhttp://localhost:3000/resources.get('enterFontfamily'), 'Arial');
@@ -166,8 +181,10 @@
 					editor.graph.setCellStyles("fontFamily", family);
 				}
 			}
-		]]></add>
-		<add as="fontSize"><![CDATA[
+		]]>
+		</add>
+		<add as="fontSize">
+			<![CDATA[
 			function (editor)
 			{
 				var size = mxUtils.prompt(mxhttp://localhost:3000/resources.get('enterFontsize'), '10');
@@ -177,8 +194,10 @@
 					editor.graph.setCellStyles("fontSize", size);
 				}
 			}
-		]]></add>
-		<add as="image"><![CDATA[
+		]]>
+		</add>
+		<add as="image">
+			<![CDATA[
 			function (editor)
 			{
 				var image = mxUtils.prompt(mxhttp://localhost:3000/resources.get('enterImageUrl'),
@@ -189,8 +208,10 @@
 					editor.graph.setCellStyles("image", image);
 				}
 			}
-		]]></add>
-		<add as="opacity"><![CDATA[
+		]]>
+		</add>
+		<add as="opacity">
+			<![CDATA[
 			function (editor)
 			{
 				var opacity = mxUtils.prompt(mxhttp://localhost:3000/resources.get('enterOpacity'), '100');
@@ -200,44 +221,58 @@
 					editor.graph.setCellStyles("opacity", opacity);
 				}
 			}
-		]]></add>
-		<add as="straightConnector"><![CDATA[
+		]]>
+		</add>
+		<add as="straightConnector">
+			<![CDATA[
 			function (editor)
 			{
 				editor.graph.setCellStyle("straightEdge");
 			}
-		]]></add>
-		<add as="elbowConnector"><![CDATA[
+		]]>
+		</add>
+		<add as="elbowConnector">
+			<![CDATA[
 			function (editor)
 			{
 				editor.graph.setCellStyle("");
 			}
-		]]></add>
-		<add as="arrowConnector"><![CDATA[
+		]]>
+		</add>
+		<add as="arrowConnector">
+			<![CDATA[
 			function (editor)
 			{
 				editor.graph.setCellStyle("arrowEdge");
 			}
-		]]></add>
-		<add as="toggleOrientation"><![CDATA[
+		]]>
+		</add>
+		<add as="toggleOrientation">
+			<![CDATA[
 			function (editor, cell)
 			{
 				editor.graph.toggleCellStyles(mxConstants.STYLE_HORIZONTAL, true);
 			}
-		]]></add>
-		<add as="toggleRounded"><![CDATA[
+		]]>
+		</add>
+		<add as="toggleRounded">
+			<![CDATA[
 			function (editor)
 			{
 				editor.graph.toggleCellStyles(mxConstants.STYLE_ROUNDED);
 			}
-		]]></add>
-		<add as="toggleShadow"><![CDATA[
+		]]>
+		</add>
+		<add as="toggleShadow">
+			<![CDATA[
 			function (editor)
 			{
 				editor.graph.toggleCellStyles(mxConstants.STYLE_SHADOW);
 			}
-		]]></add>
-		<add as="horizontalTree"><![CDATA[
+		]]>
+		</add>
+		<add as="horizontalTree">
+			<![CDATA[
 			function (editor, cell)
 			{
 				cell = cell || editor.graph.getSelectionCell();
@@ -249,8 +284,10 @@
 				
 				editor.treeLayout(cell, true);
 			}
-		]]></add>
-		<add as="verticalTree"><![CDATA[
+		]]>
+		</add>
+		<add as="verticalTree">
+			<![CDATA[
 			function (editor, cell)
 			{
 				cell = cell || editor.graph.getSelectionCell();
@@ -262,6 +299,7 @@
 				
 				editor.treeLayout(cell, false);
 			}
-		]]></add>
+		]]>
+		</add>
 	</Array>
 </mxEditor>

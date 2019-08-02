@@ -1,5 +1,14 @@
 <template>
   <div id="app">
+    <div id="mainActions">
+      <button
+        v-for="action in actions"
+        :key="action"
+        @click="execute(action)"
+      >
+        {{ action }}
+      </button>
+    </div>
     <Editor ref="wrapper" />
   </div>
 </template>
@@ -82,7 +91,6 @@ export default {
 #mainActions {
   width: 100%;
   padding-top: 8px;
-  padding-left: 24px;
   padding-bottom: 8px;
 }
 

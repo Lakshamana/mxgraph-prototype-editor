@@ -253,8 +253,8 @@ export default {
         const src = editor.graph.getModel().getTerminal(edge, true)
         const trg = editor.graph.getModel().getTerminal(edge, false)
         const obj = {
-          src: src.value.attributes['type'].nodeValue,
-          trg: trg.value.attributes['type'].nodeValue
+          src: src.value.nodeName,
+          trg: trg.value.nodeName
         }
         console.log(`[CONNECT]`, obj)
 
