@@ -314,7 +314,6 @@
 				}
 			}
 		]]></add>
-		<br/><br/>
 		<add as="Text" template="text" icon="http://localhost:3000/images/text.gif"/>
 		<add as="Container" template="container" icon="http://localhost:3000/images/swimlane.gif"/>
 		<add as="Rectangle" template="rectangle" icon="http://localhost:3000/images/rectangle.gif"/>

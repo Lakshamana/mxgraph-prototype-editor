@@ -1,55 +1,55 @@
 <template>
-  <div class="columns is-centered">
-    <div class="column is-10">
-      <table
-        border="0"
-        width="730px"
-      >
-        <tr>
-          <td
-            id="toolbar"
-            valign="top"
-          >
-            <!-- Toolbar Here -->
-          </td>
-          <td
-            id="graphContainer"
-            ref="graphContainer"
-            valign="top"
-          >
-            <div
-              id="graph"
-              tabindex="-1"
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-10">
+        <div
+          id="toolbar"
+          class="columns"
+        />
+        <div
+          id="graphContainer"
+          class="columns"
+        >
+          <div class="graph">
+            <center
+              id="splash"
+              ref="splash"
             >
-              <!-- Graph Here -->
-              <center
-                id="splash"
-                ref="splash"
-              >
-                <img src="../static/examples/editors/images/loading.gif">
-              </center>
-            </div>
-            <textarea
-              id="xml"
-              ref="xml"
-            />
-          </td>
-        </tr>
-      </table>
-      <span class="source-ipt">
-        <input
-          id="source"
-          ref="source"
-          type="checkbox"
-        >Source
-      </span>
+              <img src="../static/examples/editors/images/loading.gif">
+            </center>
+          </div>
+          <textarea
+            id="xml"
+            ref="xml"
+          />
+        </div>
+        <!-- <table border="0" width="730px">
+          <tr>
+            <td id="toolbar" colspan="3" valign="top"></td>
+          </tr>
+          <tr>
+            <td id="graphContainer" ref="graphContainer" valign="top">
+              <div id="graph" tabindex="-1">
+                <center id="splash" ref="splash">
+                  <img src="../static/examples/editors/images/loading.gif">
+                </center>
+              </div>
+              <textarea id="xml" ref="xml" />
+            </td>
+          </tr>
+        </table>-->
+        <span class="source-ipt">
+          <input id="source"
+ref="source" type="checkbox" >Source
+        </span>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import { addToWindow } from '../service/window.service'
-import mxGraphFactory from 'mxgraph'
+import { addToWindow } from '../service/window.service';
+import mxGraphFactory from 'mxgraph';
 const {
   mxGeometry,
   mxGraph,
@@ -81,13 +81,13 @@ const {
 export default {
   name: 'Editor',
 
-  data() {
+  data () {
     return {
       editor: undefined
     }
   },
 
-  created() {
+  created () {
     addToWindow('mxGeometry', mxGeometry)
     addToWindow('mxGraph', mxGraph)
     addToWindow('mxCodec', mxCodec)
@@ -116,18 +116,18 @@ export default {
     addToWindow('onInit', this.onInit)
   },
 
-  mounted() {
+  mounted () {
     this.editor = this.createEditor(
       'http://localhost:3000/config/diagrameditor.xml'
     )
   },
 
-  beforeDestroy() {
+  beforeDestroy () {
     window.onbeforeunload = () => mxResources.get('changesLost')
   },
 
   methods: {
-    createEditor(config) {
+    createEditor (config) {
       let editor = null
 
       const hideSplash = () => {
@@ -154,20 +154,20 @@ export default {
           mxObjectCodec.allowEval = false
 
           // Adds active border for panning inside the container
-          // editor.graph.createPanningManager = function() {
-          //   const pm = new mxPanningManager(this);
-          //   pm.border = 30;
-          //   return pm;
-          // };
+          editor.graph.createPanningManager = function () {
+            const pm = new mxPanningManager(this)
+            pm.border = 30
+            return pm
+          };
 
-          // editor.graph.allowAutoPanning = true
+          editor.graph.allowAutoPanning = false
           editor.graph.timerAutoScroll = true
 
           // Updates the window title after opening new files
           const title = document.title
           const funct = sender => {
             document.title = title + ' - ' + sender.getTitle()
-          }
+          };
 
           editor.addListener(mxEvent.OPEN, funct)
 
@@ -191,7 +191,7 @@ export default {
       return editor
     },
 
-    onInit(editor) {
+    onInit (editor) {
       // Enables rotation handle
       mxVertexHandler.prototype.rotationEnabled = true
 
@@ -201,7 +201,7 @@ export default {
       // Alt disables guides
       mxGuide.prototype.isEnabledForEvent = evt => {
         return !mxEvent.isAltDown(evt)
-      }
+      };
 
       // Enables snapping waypoints to terminals
       mxEdgeHandler.prototype.snapToTerminals = true
@@ -228,25 +228,26 @@ export default {
       if (title != null) {
         const f = sender => {
           title.innerHTML = 'mxDraw - ' + sender.getTitle()
-        }
+        };
 
         editor.addListener(mxEvent.ROOT, f)
         f(editor)
       }
 
       // Changes the zoom on mouseWheel events
-      mxEvent.addMouseWheelListener((evt, up) => {
-        if (!mxEvent.isConsumed(evt)) {
-          if (up) {
-            editor.execute('zoomIn')
-          } else {
-            editor.execute('zoomOut')
-          }
-          mxEvent.consume(evt)
-        }
-      })
+      // mxEvent.addMouseWheelListener((evt, up) => {
+      //   if (!mxEvent.isConsumed(evt)) {
+      //     if (up) {
+      //       editor.execute('zoomIn')
+      //     } else {
+      //       editor.execute('zoomOut')
+      //     }
+      //     mxEvent.consume(evt)
+      //   }
+      // })
 
       // Listens vertexes's connect event -- test!
+
       editor.graph.connectionHandler.addListener(
         mxEvent.CONNECT,
         (sender, evt) => {
@@ -275,10 +276,10 @@ export default {
       const sourceInput = this.$refs.source
       sourceInput.checked = false
 
-      const funct = function(editor) {
+      const funct = function (editor) {
         if (sourceInput.checked) {
-          graphNode.style.display = 'none'
-          textNode.style.display = 'inline'
+          graphNode.style.display = 'none';
+          textNode.style.display = 'inline';
 
           const enc = new mxCodec()
           const node = enc.encode(editor.graph.getModel())
@@ -287,7 +288,7 @@ export default {
           textNode.originalValue = textNode.value
           textNode.focus()
         } else {
-          graphNode.style.display = ''
+          graphNode.style.display = '';
 
           if (textNode.value !== textNode.originalValue) {
             const doc = mxUtils.parseXml(textNode.value)
@@ -302,7 +303,7 @@ export default {
             mxUtils.clearSelection()
           }
 
-          textNode.style.display = 'none'
+          textNode.style.display = 'none';
 
           // Moves the focus back to the graph
           editor.graph.container.focus()
@@ -313,7 +314,7 @@ export default {
 
       // Defines a new action to switch between
       // XML and graphical display
-      mxEvent.addListener(sourceInput, 'click', function() {
+      mxEvent.addListener(sourceInput, 'click', function () {
         editor.execute('switchView')
       })
 
@@ -352,23 +353,23 @@ export default {
 
           // Requests image if request is valid
           if (w > 0 && h > 0) {
-            const name = 'export.png'
-            const format = 'png'
-            const bg = '&bg=#FFFFFF'
+            const name = 'export.png';
+            const format = 'png';
+            const bg = '&bg=#FFFFFF';
 
             new mxXmlRequest(
               editor.urlImage,
               'filename=' +
-                name +
-                '&format=' +
-                format +
-                bg +
-                '&w=' +
-                w +
-                '&h=' +
-                h +
-                '&xml=' +
-                encodeURIComponent(xml)
+              name +
+              '&format=' +
+              format +
+              bg +
+              '&w=' +
+              w +
+              '&h=' +
+              h +
+              '&xml=' +
+              encodeURIComponent(xml)
             ).simulate(document, '_blank')
           }
         }
@@ -376,7 +377,7 @@ export default {
         editor.addAction('exportImage', exportImage)
 
         // Client-side code for SVG export
-        const exportSvg = function(editor) {
+        const exportSvg = function (editor) {
           const graph = editor.graph
           const scale = graph.view.scale
           const bounds = graph.getGraphBounds()
@@ -389,7 +390,7 @@ export default {
               : svgDoc.createElement('svg')
 
           if (root.style != null) {
-            root.style.backgroundColor = '#FFFFFF'
+            root.style.backgroundColor = '#FFFFFF';
           } else {
             root.setAttribute('style', 'background-color:#FFFFFF')
           }
@@ -432,14 +433,14 @@ export default {
             svgCanvas
           )
 
-          const name = 'export.svg'
+          const name = 'export.svg';
           const xml = encodeURIComponent(mxUtils.getXml(root))
 
           new mxXmlRequest(
             editor.urlEcho,
             'filename=' + name + '&format=svg' + '&xml=' + xml
           ).simulate(document, '_blank')
-        }
+        };
         editor.addAction('exportSvg', exportSvg)
       }
     }
@@ -461,8 +462,10 @@ export default {
 }
 
 #toolbar {
-  width: 16px;
-  padding-left: 20px;
+  width: 540px;
+  padding: 20px;
+  height: 50px;
+  background-color: #7e7e7e;
 }
 
 #xml {
