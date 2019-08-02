@@ -5,10 +5,7 @@
         <table class="table">
           <tr>
             <td>
-              <div
-                id="toolbar"
-                valign="top"
-              />
+              <div id="toolbar" />
             </td>
           </tr>
           <tr>
@@ -160,6 +157,7 @@ export default {
             return pm
           }
 
+          editor.defaultEdge.style = 'straightConnector'
           editor.graph.allowAutoPanning = false
           editor.graph.timerAutoScroll = true
 
@@ -251,16 +249,15 @@ export default {
       editor.graph.connectionHandler.addListener(mxEvent.CONNECT, (sender, evt) => {
         const edge = evt.getProperty('cell')
         const src = editor.graph.getModel().getTerminal(edge, true)
+          .value
+          .nodeName
         const trg = editor.graph.getModel().getTerminal(edge, false)
-        const obj = {
-          src: src.value.nodeName,
-          trg: trg.value.nodeName
-        }
-        console.log(`[CONNECT]`, obj)
+          .value
+          .nodeName
 
         // Add a business rule -- test!
         // E.g., if src type is as same as trg type
-        if (obj.src === obj.trg) {
+        if (src === trg) {
           editor.graph.removeCells([edge], true)
           alert("Can't create edge between equal figures")
         }
@@ -289,7 +286,7 @@ export default {
       const sourceInput = this.$refs.source
       sourceInput.checked = false
 
-      const funct = function (editor) {
+      const funct = editor => {
         if (sourceInput.checked) {
           graphNode.style.display = 'none'
           textNode.style.display = 'inline'
@@ -327,7 +324,7 @@ export default {
 
       // Defines a new action to switch between
       // XML and graphical display
-      mxEvent.addListener(sourceInput, 'click', function () {
+      mxEvent.addListener(sourceInput, 'click', () => {
         editor.execute('switchView')
       })
 
@@ -477,8 +474,10 @@ export default {
 #toolbar {
   height: 50px;
   border-radius: 10px;
+  padding: 5px;
   border: 1px solid black;
   vertical-align: middle;
+  place-items: initial;
 }
 
 #xml {

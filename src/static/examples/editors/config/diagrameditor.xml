@@ -14,64 +14,69 @@
 		<add as="toolbar" element="toolbar" />
 	</ui>
 	<Array as="templates">
+		<add as="group">
+			<Group label="" href="">
+				<mxCell vertex="1" style="group" connectable="0"/>
+			</Group>
+		</add>
 		<add as="connector">
-			<Connector label="" href="" type="connector">
+			<Connector label="" href="">
 				<mxCell edge="1">
 					<mxGeometry as="geometry" relative="1" />
 				</mxCell>
 			</Connector>
 		</add>
 		<add as="normal">
-			<Normal label="">
-				<mxCell vertex="1" style="normal" connectable="1">
+			<Normal label="" href="">
+				<mxCell vertex="1" style="normal">
 					<mxGeometry as="geometry" width="50" height="50" />
 				</mxCell>
 			</Normal>
 		</add>
 		<add as="decomposed">
-			<Decomposed label="">
-				<mxCell vertex="1" style="decomposed" connectable="1">
+			<Decomposed label="" href="">
+				<mxCell vertex="1" style="decomposed">
 					<mxGeometry as="geometry" width="50" height="50" />
 				</mxCell>
 			</Decomposed>
 		</add>
 		<add as="agent">
-			<Agent label="">
-				<mxCell vertex="1" style="agent" connectable="1">
+			<Agent label="" href="">
+				<mxCell vertex="1" style="agent">
 					<mxGeometry as="geometry" width="50" height="50" />
 				</mxCell>
 			</Agent>
 		</add>
 		<add as="workgroup">
 			<Workgroup label="">
-				<mxCell vertex="1" style="workgroup" connectable="1">
+				<mxCell vertex="1" style="workgroup">
 					<mxGeometry as="geometry" width="50" height="50" />
 				</mxCell>
 			</Workgroup>
 		</add>
 		<add as="artifact">
 			<Artifact label="">
-				<mxCell vertex="1" style="artifact" connectable="1">
+				<mxCell vertex="1" style="artifact_empty">
 					<mxGeometry as="geometry" width="50" height="50" />
 				</mxCell>
 			</Artifact>
 		</add>
 		<add as="join">
 			<Join label="">
-				<mxCell vertex="1" style="join_or_end_end" connectable="1">
+				<mxCell vertex="1" style="join_or_end_end">
 					<mxGeometry as="geometry" width="50" height="50" />
 				</mxCell>
 			</Join>
 		</add>
 		<add as="branch">
 			<Branch label="">
-				<mxCell vertex="1" style="branch_or_end_end" connectable="1">
+				<mxCell vertex="1" style="branch_or_end_end">
 					<mxGeometry as="geometry" width="50" height="50" />
 				</mxCell>
 			</Branch>
 		</add>
 	</Array>
-	<mxGraph as="graph" alternateEdgeStyle="verticalConnector" allowLoops="1" dropEnabled="1">
+	<mxGraph as="graph" allowLoops="1" dropEnabled="1">
 		<add as="isAutoSizeCell">
 			<![CDATA[
 			function(cell)
@@ -112,13 +117,36 @@
 		]]>
 		</add>
 		<mxStylesheet as="stylesheet">
+			<add as="straightConnector">
+				<add as="shape" value="connector"/>
+				<add as="endArrow" value="classic"/>
+				<add as="edgeStyle" value="straightEdgeStyle"/>
+			</add>
+			<add as="swimlane">
+				<add as="shape" value="swimlane"/>
+				<add as="shadow" value="0"/>
+				<add as="startSize" value="23"/>
+				<add as="align" value="center"/>
+				<add as="verticalAlign" value="top"/>
+				<add as="strokeColor" value="#EEEEEE"/>
+				<add as="fillColor" value="#D4D4D4"/>
+			</add>
+			<add as="group">
+				<add as="shape" value="rectangle"/>
+				<add as="perimeter" value="rectanglePerimeter"/>
+				<add as="fontSize" value="10"/>
+				<add as="align" value="center"/>
+				<add as="verticalAlign" value="middle"/>
+				<add as="strokeColor" value="gray"/>
+				<add as="dashed" value="1"/>
+			</add>
 			<add as="normal">
 				<add as="shape" value="image" />
 				<add as="perimeter" value="rectanglePerimeter" />
 				<add as="fontSize" value="10" />
 				<add as="align" value="center" />
 				<add as="verticalAlign" value="middle" />
-				<add as="image" value="http://localhost:3000/images/spm/normal_blank.png" />
+				<add as="image" value="http://localhost:3000/images/spm/normal_blank.gif" />
 			</add>
 			<add as="decomposed">
 				<add as="shape" value="image" />
@@ -126,7 +154,7 @@
 				<add as="fontSize" value="10" />
 				<add as="align" value="center" />
 				<add as="verticalAlign" value="middle" />
-				<add as="image" value="http://localhost:3000/images/spm/decomposed_blank.png" />
+				<add as="image" value="http://localhost:3000/images/spm/decomposed_blank.gif" />
 			</add>
 			<add as="agent">
 				<add as="shape" value="image" />
@@ -303,7 +331,7 @@
 		<add as="Agent" template="agent" icon="http://localhost:3000/images/spm/agent.png" />
 		<add as="Workgroup" template="workgroup" icon="http://localhost:3000/images/spm/group.png" />
 		<add as="Artifact" template="artifact" icon="http://localhost:3000/images/spm/artifact_full.png" />
-		<add as="Join" template="join_or_end_end" icon="http://localhost:3000/images/spm/join.png" />
-		<add as="Branch" template="branch_or_end_end" icon="http://localhost:3000/images/spm/branch.png" />
+		<add as="Join" template="join" icon="http://localhost:3000/images/spm/join.png" />
+		<add as="Branch" template="branch" icon="http://localhost:3000/images/spm/branch.png" />
 	</mxDefaultToolbar>
 </mxEditor>
