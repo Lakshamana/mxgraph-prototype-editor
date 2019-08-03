@@ -39,8 +39,7 @@ export default {
         'redo',
         'print',
         'show',
-        'exportImage',
-        'exportSvg'
+        'exportImage'
       ]
     }
   },
