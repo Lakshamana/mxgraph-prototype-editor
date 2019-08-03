@@ -5,7 +5,10 @@
         <table class="table">
           <tr>
             <td>
-              <div id="toolbar" />
+              <div
+                id="toolbar"
+                ref="toolbar"
+              />
             </td>
           </tr>
           <tr>
@@ -72,7 +75,8 @@ const {
   mxImage,
   mxResources,
   mxStylesheet,
-  mxDefaultToolbar
+  mxDefaultToolbar,
+  mxToolbar
 } = new mxGraphFactory()
 
 export default {
@@ -80,7 +84,12 @@ export default {
 
   data () {
     return {
-      editor: undefined
+      editor: undefined,
+      previousSelected: undefined,
+      defaultSelectedModeStyle: {
+        border: '1px solid black',
+        'border-radius': '3px'
+      }
     }
   },
 
@@ -110,6 +119,7 @@ export default {
     addToWindow('mxResources', mxResources)
     addToWindow('mxStylesheet', mxStylesheet)
     addToWindow('mxDefaultToolbar', mxDefaultToolbar)
+    addToWindow('mxToolbar', mxToolbar)
     addToWindow('onInit', this.onInit)
   },
 
@@ -156,10 +166,15 @@ export default {
             pm.border = 30
             return pm
           }
-
-          editor.defaultEdge.style = 'straightConnector'
           editor.graph.allowAutoPanning = false
           editor.graph.timerAutoScroll = true
+
+          const selectedNode =
+            this.$refs.toolbar.getElementsByClassName('mxToolbarModeSelected')[0]
+          if (selectedNode) {
+            this.setCssStyle(selectedNode.style, this.defaultSelectedModeStyle)
+            this.previousSelected = selectedNode
+          }
 
           // Updates the window title after opening new files
           const title = document.title
@@ -261,6 +276,7 @@ export default {
           editor.graph.removeCells([edge], true)
           alert("Can't create edge between equal figures")
         }
+        mxEvent.consume(evt)
       })
 
       editor.graph.addListener(mxEvent.MOVE_CELLS, (sender, evt) => {
@@ -270,14 +286,29 @@ export default {
         const dy = evt.getProperty('dy')
         x += dx
         y += dy
-        console.log(x + dx, y + dy)
         if (x < 0) {
           cell.geometry.x = 0
         }
         if (y < 0) {
           cell.geometry.y = 0
         }
+        mxEvent.consume(evt)
       })
+
+      editor.toolbar.toolbar.addListener(
+        mxEvent.SELECT, sdr => {
+          sdr.defaultMode = sdr.selectedMode
+          const selectedNode =
+            this.$refs.toolbar.getElementsByClassName('mxToolbarModeSelected')[0]
+          if (selectedNode) {
+            this.setCssStyle(this.previousSelected.style, {
+              border: '',
+              'border-radius': ''
+            })
+            this.setCssStyle(selectedNode.style, this.defaultSelectedModeStyle)
+            this.previousSelected = selectedNode
+          }
+        })
 
       // Defines a new action to switch between
       // XML and graphical display
@@ -453,6 +484,23 @@ export default {
         }
         editor.addAction('exportSvg', exportSvg)
       }
+    },
+
+    setCssStyle (styleObj, styleSet) {
+      for (const i of Object.keys(styleSet)) {
+        if (styleSet.hasOwnProperty(i)) {
+          styleObj[i] = styleSet[i]
+        }
+      }
+    },
+
+    clearCssStyle (styleObj) {
+      for (const i of Object.keys(styleObj)) {
+        if (styleObj.hasOwnProperty(i)) {
+          console.log('asadad')
+          styleObj[i] = ''
+        }
+      }
     }
   }
 }
@@ -474,7 +522,7 @@ export default {
 #toolbar {
   height: 50px;
   border-radius: 10px;
-  padding: 5px;
+  padding: 10px;
   border: 1px solid black;
   vertical-align: middle;
   place-items: initial;

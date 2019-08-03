@@ -10,7 +10,6 @@
 	</add>
 	<ui>
 		<add as="graph" element="graph" />
-		<add as="status" element="status" />
 		<add as="toolbar" element="toolbar" />
 	</ui>
 	<Array as="templates">
@@ -316,7 +315,7 @@
 			]]>
 			</add>
 			<root>
-				<Diagram label="My Diagram" href="http://www.jgraph.com/" id="0">
+				<Diagram label="My Diagram" href="" id="0">
 					<mxCell />
 				</Diagram>
 				<Layer label="Default Layer" id="1">
