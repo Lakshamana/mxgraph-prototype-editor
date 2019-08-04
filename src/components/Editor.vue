@@ -206,7 +206,7 @@ export default {
 
     onInit (editor) {
       // Enables rotation handle
-      mxVertexHandler.prototype.rotationEnabled = true
+      mxVertexHandler.prototype.rotationEnabled = false
 
       // Enables guides
       mxGraphHandler.prototype.guidesEnabled = true
@@ -218,6 +218,8 @@ export default {
 
       // Enables snapping waypoints to terminals
       mxEdgeHandler.prototype.snapToTerminals = true
+
+      mxGraph.prototype.setCellsResizable(false)
 
       // Defines an icon for creating new connections in the connection handler.
       // This will automatically disable the highlighting of the source vertex.
