@@ -325,6 +325,7 @@
 		</mxGraphModel>
 	</mxGraph>
 	<mxDefaultToolbar as="toolbar">
+		<add as="Lock" mode="lock" icon="http://localhost:3000/images/spm/Lock.png" />
 		<add as="Normal" template="normal" icon="http://localhost:3000/images/spm/normal.png" />
 		<add as="Decomposed" template="decomposed" icon="http://localhost:3000/images/spm/decomposed.png" />
 		<add as="Agent" template="agent" icon="http://localhost:3000/images/spm/agent.png" />

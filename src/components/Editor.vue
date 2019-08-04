@@ -84,12 +84,7 @@ export default {
 
   data () {
     return {
-      editor: undefined,
-      previousSelected: undefined,
-      defaultSelectedModeStyle: {
-        border: '1px solid black',
-        'border-radius': '3px'
-      }
+      editor: undefined
     }
   },
 
@@ -156,6 +151,11 @@ export default {
           mxUtils.error('Browser is not supported!', 200, false)
         } else {
           mxObjectCodec.allowEval = true
+
+          mxEditor.prototype.getToolbar = function () {
+            return this.toolbar.toolbar
+          }
+
           const node = mxUtils.load(config).getDocumentElement()
           editor = new mxEditor(node)
           mxObjectCodec.allowEval = false
@@ -169,12 +169,12 @@ export default {
           editor.graph.allowAutoPanning = false
           editor.graph.timerAutoScroll = true
 
-          const selectedNode =
-            this.$refs.toolbar.getElementsByClassName('mxToolbarModeSelected')[0]
-          if (selectedNode) {
-            this.setCssStyle(selectedNode.style, this.defaultSelectedModeStyle)
-            this.previousSelected = selectedNode
-          }
+          // const selectedNode =
+          //   this.$refs.toolbar.getElementsByClassName('mxToolbarModeSelected')[0]
+          // if (selectedNode) {
+          //   this.setCssStyle(selectedNode.style, this.defaultSelectedModeStyle)
+          //   this.previousSelected = selectedNode
+          // }
 
           // Updates the window title after opening new files
           const title = document.title
@@ -247,20 +247,7 @@ export default {
         f(editor)
       }
 
-      // Changes the zoom on mouseWheel events
-      // mxEvent.addMouseWheelListener((evt, up) => {
-      //   if (!mxEvent.isConsumed(evt)) {
-      //     if (up) {
-      //       editor.execute('zoomIn')
-      //     } else {
-      //       editor.execute('zoomOut')
-      //     }
-      //     mxEvent.consume(evt)
-      //   }
-      // })
-
       // Listens vertexes's connect event -- test!
-
       editor.graph.connectionHandler.addListener(mxEvent.CONNECT, (sender, evt) => {
         const edge = evt.getProperty('cell')
         const src = editor.graph.getModel().getTerminal(edge, true)
@@ -295,20 +282,18 @@ export default {
         mxEvent.consume(evt)
       })
 
-      editor.toolbar.toolbar.addListener(
-        mxEvent.SELECT, sdr => {
-          sdr.defaultMode = sdr.selectedMode
-          const selectedNode =
-            this.$refs.toolbar.getElementsByClassName('mxToolbarModeSelected')[0]
+      editor.getToolbar().addListener(mxEvent.SELECT, sdr => {
+        if (sdr.selectedMode.title === 'Lock') {
+          const nodeList = sdr.container.children
+          const selectedNode = Object.values(nodeList).find(node => node.title === 'Lock')
           if (selectedNode) {
-            this.setCssStyle(this.previousSelected.style, {
-              border: '',
-              'border-radius': ''
-            })
-            this.setCssStyle(selectedNode.style, this.defaultSelectedModeStyle)
-            this.previousSelected = selectedNode
+            const b = editor.graph.isEnabled()
+            const imageName = b ? 'Unlock' : 'Lock'
+            selectedNode.src = `http://localhost:3000/images/spm/${imageName}.png`
+            editor.graph.setEnabled(!b)
           }
-        })
+        }
+      })
 
       // Defines a new action to switch between
       // XML and graphical display
@@ -416,23 +401,6 @@ export default {
         }
 
         editor.addAction('exportImage', exportImage)
-      }
-    },
-
-    setCssStyle (styleObj, styleSet) {
-      for (const i of Object.keys(styleSet)) {
-        if (styleSet.hasOwnProperty(i)) {
-          styleObj[i] = styleSet[i]
-        }
-      }
-    },
-
-    clearCssStyle (styleObj) {
-      for (const i of Object.keys(styleObj)) {
-        if (styleObj.hasOwnProperty(i)) {
-          console.log('asadad')
-          styleObj[i] = ''
-        }
       }
     }
   }
