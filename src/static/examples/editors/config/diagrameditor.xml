@@ -15,7 +15,7 @@
 	<Array as="templates">
 		<add as="group">
 			<Group label="" href="">
-				<mxCell vertex="1" style="group" connectable="0"/>
+				<mxCell vertex="1" style="group" connectable="0" />
 			</Group>
 		</add>
 		<add as="connector">
@@ -117,27 +117,27 @@
 		</add>
 		<mxStylesheet as="stylesheet">
 			<add as="straightConnector">
-				<add as="shape" value="connector"/>
-				<add as="endArrow" value="classic"/>
-				<add as="edgeStyle" value="straightEdgeStyle"/>
+				<add as="shape" value="connector" />
+				<add as="endArrow" value="classic" />
+				<add as="edgeStyle" value="straightEdgeStyle" />
 			</add>
 			<add as="swimlane">
-				<add as="shape" value="swimlane"/>
-				<add as="shadow" value="0"/>
-				<add as="startSize" value="23"/>
-				<add as="align" value="center"/>
-				<add as="verticalAlign" value="top"/>
-				<add as="strokeColor" value="#EEEEEE"/>
-				<add as="fillColor" value="#D4D4D4"/>
+				<add as="shape" value="swimlane" />
+				<add as="shadow" value="0" />
+				<add as="startSize" value="23" />
+				<add as="align" value="center" />
+				<add as="verticalAlign" value="top" />
+				<add as="strokeColor" value="#EEEEEE" />
+				<add as="fillColor" value="#D4D4D4" />
 			</add>
 			<add as="group">
-				<add as="shape" value="rectangle"/>
-				<add as="perimeter" value="rectanglePerimeter"/>
-				<add as="fontSize" value="10"/>
-				<add as="align" value="center"/>
-				<add as="verticalAlign" value="middle"/>
-				<add as="strokeColor" value="gray"/>
-				<add as="dashed" value="1"/>
+				<add as="shape" value="rectangle" />
+				<add as="perimeter" value="rectanglePerimeter" />
+				<add as="fontSize" value="10" />
+				<add as="align" value="center" />
+				<add as="verticalAlign" value="middle" />
+				<add as="strokeColor" value="gray" />
+				<add as="dashed" value="1" />
 			</add>
 			<add as="normal">
 				<add as="shape" value="image" />
@@ -325,7 +325,24 @@
 		</mxGraphModel>
 	</mxGraph>
 	<mxDefaultToolbar as="toolbar">
-		<add as="Lock" mode="lock" icon="http://localhost:3000/images/spm/Lock.png" />
+		<add as="Lock" mode="lock" icon="http://localhost:3000/images/spm/Lock.png"><![CDATA[ 
+			editor => {
+				if (editor.getToolbar().selectedMode.title === 'Lock') {
+					const nodeList = editor.getToolbar().container.children
+					const selectedNode = Object.values(nodeList).find(node => node.title === 'Lock')
+					if (selectedNode) {
+						const b = editor.graph.isEnabled()
+						console.log('enabled:', b)
+						if (Object.keys(editor.graph.model.cells).length > 2) {
+							editor.graph.setEnabled(!b)
+							const imageName = b ? 'Unlock' : 'Lock'
+							selectedNode.src = `http://localhost:3000/images/spm/${imageName}.png`
+						}
+						console.log('now it\'s:', editor.graph.isEnabled())
+					}
+				}
+			}
+		]]></add>
 		<add as="Normal" template="normal" icon="http://localhost:3000/images/spm/normal.png" />
 		<add as="Decomposed" template="decomposed" icon="http://localhost:3000/images/spm/decomposed.png" />
 		<add as="Agent" template="agent" icon="http://localhost:3000/images/spm/agent.png" />

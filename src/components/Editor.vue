@@ -81,10 +81,73 @@ const {
 
 export default {
   name: 'Editor',
-
   data () {
     return {
-      editor: undefined
+      editor: undefined,
+      validatees: {
+        normal: {
+          targets: ['normal', 'decomposed', 'artifact', 'join', 'branch'],
+          multiplicities: [
+            ['*', 'normal'],
+            ['*', 'decomposed'],
+            ['*', 'artifact'],
+            ['*', 'join'],
+            ['*', 'branch']
+          ]
+        },
+        decomposed: {
+          targets: ['normal', 'decomposed', 'artifact', 'join', 'branch'],
+          multiplicities: [
+            ['*', 'normal'],
+            ['*', 'decomposed'],
+            ['*', 'artifact'],
+            ['*', 'join'],
+            ['*', 'branch']
+          ]
+        },
+        agent: {
+          targets: ['normal', 'decomposed'],
+          multiplicities: [
+            ['*', 'normal'],
+            ['*', 'decomposed']
+          ]
+        },
+        workgroup: {
+          targets: ['normal', 'decomposed'],
+          multiplicities: [
+            ['*', 'normal'],
+            ['*', 'decomposed']
+          ]
+        },
+        artifact: {
+          targets: ['normal', 'decomposed'],
+          multiplicities: [
+            ['*', 'normal'],
+            ['*', 'decomposed']
+          ]
+        },
+        join: {
+          multiplicities: [
+            ['*', 'normal'],
+            ['*', 'decomposed'],
+            ['*', 'join'],
+            ['*', 'branch']
+          ]
+        },
+        branch: {
+          targets: ['normal', 'decomposed', 'join', 'branch'],
+          multiplicities: [
+            ['*', 'normal'],
+            ['*', 'decomposed'],
+            ['*', 'join'],
+            ['*', 'branch']
+          ]
+        }
+      },
+      validators: {
+        targets: this.validateTargets,
+        multiplicities: this.validateMultiplicities
+      }
     }
   },
 
@@ -169,13 +232,6 @@ export default {
           editor.graph.allowAutoPanning = false
           editor.graph.timerAutoScroll = true
 
-          // const selectedNode =
-          //   this.$refs.toolbar.getElementsByClassName('mxToolbarModeSelected')[0]
-          // if (selectedNode) {
-          //   this.setCssStyle(selectedNode.style, this.defaultSelectedModeStyle)
-          //   this.previousSelected = selectedNode
-          // }
-
           // Updates the window title after opening new files
           const title = document.title
           const funct = sender => {
@@ -249,21 +305,14 @@ export default {
         f(editor)
       }
 
-      // Listens vertexes's connect event -- test!
+      // Listens vertexes's connect event
       editor.graph.connectionHandler.addListener(mxEvent.CONNECT, (sender, evt) => {
         const edge = evt.getProperty('cell')
-        const src = editor.graph.getModel().getTerminal(edge, true)
-          .value
-          .nodeName
-        const trg = editor.graph.getModel().getTerminal(edge, false)
-          .value
-          .nodeName
-
-        // Add a business rule -- test!
-        // E.g., if src type is as same as trg type
-        if (src === trg) {
+        try {
+          this.validateConnection(edge)
+        } catch (e) {
+          alert(`Can't create connection: "${e}"`)
           editor.graph.removeCells([edge], true)
-          alert("Can't create edge between equal figures")
         }
         mxEvent.consume(evt)
       })
@@ -284,18 +333,19 @@ export default {
         mxEvent.consume(evt)
       })
 
-      editor.getToolbar().addListener(mxEvent.SELECT, sdr => {
-        if (sdr.selectedMode.title === 'Lock') {
-          const nodeList = sdr.container.children
-          const selectedNode = Object.values(nodeList).find(node => node.title === 'Lock')
-          if (selectedNode) {
-            const b = editor.graph.isEnabled()
-            const imageName = b ? 'Unlock' : 'Lock'
-            selectedNode.src = `http://localhost:3000/images/spm/${imageName}.png`
-            editor.graph.setEnabled(!b)
-          }
-        }
-      })
+      // editor.getToolbar().addListener(mxEvent.SELECT, (sdr, evt) => {
+      //   console.log(sdr.selectedMode.title)
+      //   if (sdr.selectedMode.title === 'Lock') {
+      //     const nodeList = sdr.container.children
+      //     const selectedNode = Object.values(nodeList).find(node => node.title === 'Lock')
+      //     if (selectedNode) {
+      //       const b = editor.graph.isEnabled()
+      //       const imageName = b ? 'Unlock' : 'Lock'
+      //       selectedNode.src = `http://localhost:3000/images/spm/${imageName}.png`
+      //       editor.graph.setEnabled(!b)
+      //     }
+      //   }
+      // })
 
       // Defines a new action to switch between
       // XML and graphical display
@@ -401,9 +451,36 @@ export default {
             ).simulate(document, '_blank')
           }
         }
-
         editor.addAction('exportImage', exportImage)
       }
+    },
+
+    validateConnection (edge) {
+      const vertexes = [edge.source, edge.target]
+      for (const v of vertexes) {
+        const t = this.getVertexType(v)
+        const rules = this.validatees[t]
+        for (const r in rules) {
+          const validateFn = this.validators[r]
+          if (!validateFn(v, rules[r])) {
+            throw new Error(`Invalid ${r}`)
+          }
+        }
+      }
+    },
+
+    getVertexType (vertex) {
+      return vertex.value.nodeName.toLowerCase()
+    },
+
+    validateMultiplicities (srcVertex, mult) {
+      console.log('[MULT]', srcVertex, mult)
+      return true
+    },
+
+    validateTargets (srcVertex, targets) {
+      console.log(this.getVertexType(srcVertex), targets)
+      return targets.includes(this.getVertexType(srcVertex))
     }
   }
 }
