@@ -76,7 +76,8 @@ const {
   mxResources,
   mxStylesheet,
   mxDefaultToolbar,
-  mxToolbar
+  mxToolbar,
+  mxMultiplicity
 } = new mxGraphFactory()
 
 export default {
@@ -86,62 +87,62 @@ export default {
       editor: undefined,
       validatees: {
         normal: {
-          targets: ['normal', 'decomposed', 'artifact', 'join', 'branch'],
-          multiplicities: [
-            ['*', 'normal'],
-            ['*', 'decomposed'],
-            ['*', 'artifact'],
-            ['*', 'join'],
-            ['*', 'branch']
-          ]
+          multiplicities: {
+            normal: 1,
+            decomposed: 2,
+            artifact: undefined,
+            join: undefined,
+            branch: undefined
+          }
         },
         decomposed: {
-          targets: ['normal', 'decomposed', 'artifact', 'join', 'branch'],
-          multiplicities: [
-            ['*', 'normal'],
-            ['*', 'decomposed'],
-            ['*', 'artifact'],
-            ['*', 'join'],
-            ['*', 'branch']
-          ]
+          multiplicities: {
+            normal: 2,
+            decomposed: 1,
+            artifact: undefined,
+            join: undefined,
+            branch: undefined
+          }
         },
         agent: {
-          targets: ['normal', 'decomposed'],
-          multiplicities: [
-            ['*', 'normal'],
-            ['*', 'decomposed']
-          ]
+          multiplicities: {
+            normal: 1,
+            decomposed: 1,
+            artifact: undefined,
+            join: undefined,
+            branch: undefined
+          }
         },
         workgroup: {
-          targets: ['normal', 'decomposed'],
-          multiplicities: [
-            ['*', 'normal'],
-            ['*', 'decomposed']
-          ]
+          multiplicities: {
+            normal: 1,
+            decomposed: 1,
+            artifact: undefined,
+            join: undefined,
+            branch: undefined
+          }
         },
         artifact: {
-          targets: ['normal', 'decomposed'],
-          multiplicities: [
-            ['*', 'normal'],
-            ['*', 'decomposed']
-          ]
+          multiplicities: {
+            normal: 1,
+            decomposed: 1
+          }
         },
         join: {
-          multiplicities: [
-            ['*', 'normal'],
-            ['*', 'decomposed'],
-            ['*', 'join'],
-            ['*', 'branch']
-          ]
+          multiplicities: {
+            normal: 1,
+            decomposed: 1,
+            join: undefined,
+            branch: undefined
+          }
         },
         branch: {
-          targets: ['normal', 'decomposed', 'join', 'branch'],
-          multiplicities: [
-            ['*', 'normal'],
-            ['*', 'decomposed'],
-            ['*', 'join'],
-            ['*', 'branch']
-          ]
+          multiplicities: {
+            normal: 1,
+            decomposed: 1,
+            join: undefined,
+            branch: undefined
+          }
         }
       },
       validators: {
@@ -178,6 +179,7 @@ export default {
     addToWindow('mxStylesheet', mxStylesheet)
     addToWindow('mxDefaultToolbar', mxDefaultToolbar)
     addToWindow('mxToolbar', mxToolbar)
+    addToWindow('mxMultiplicity', mxMultiplicity)
     addToWindow('onInit', this.onInit)
   },
 
@@ -231,6 +233,7 @@ export default {
           }
           editor.graph.allowAutoPanning = false
           editor.graph.timerAutoScroll = true
+          editor.validation = true
 
           // Updates the window title after opening new files
           const title = document.title
@@ -306,16 +309,17 @@ export default {
       }
 
       // Listens vertexes's connect event
-      editor.graph.connectionHandler.addListener(mxEvent.CONNECT, (sender, evt) => {
-        const edge = evt.getProperty('cell')
-        try {
-          this.validateConnection(edge)
-        } catch (e) {
-          alert(`Can't create connection: "${e}"`)
-          editor.graph.removeCells([edge], true)
-        }
-        mxEvent.consume(evt)
-      })
+      editor.graph.connectionHandler.addListener(
+        mxEvent.CONNECT, (sender, evt) => {
+          const edge = evt.getProperty('cell')
+          try {
+            this.validateConnection(edge)
+          } catch (e) {
+            alert(`Can't create connection: "${e}"`)
+            editor.graph.removeCells([edge], true)
+          }
+          mxEvent.consume(evt)
+        })
 
       editor.graph.addListener(mxEvent.MOVE_CELLS, (sender, evt) => {
         const cell = editor.graph.getSelectionCell()
@@ -332,20 +336,6 @@ export default {
         }
         mxEvent.consume(evt)
       })
-
-      // editor.getToolbar().addListener(mxEvent.SELECT, (sdr, evt) => {
-      //   console.log(sdr.selectedMode.title)
-      //   if (sdr.selectedMode.title === 'Lock') {
-      //     const nodeList = sdr.container.children
-      //     const selectedNode = Object.values(nodeList).find(node => node.title === 'Lock')
-      //     if (selectedNode) {
-      //       const b = editor.graph.isEnabled()
-      //       const imageName = b ? 'Unlock' : 'Lock'
-      //       selectedNode.src = `http://localhost:3000/images/spm/${imageName}.png`
-      //       editor.graph.setEnabled(!b)
-      //     }
-      //   }
-      // })
 
       // Defines a new action to switch between
       // XML and graphical display
@@ -397,7 +387,8 @@ export default {
       })
 
       // Only adds image and SVG export if backend is available
-      // NOTE: The old image export in mxEditor is not used, the urlImage is used for the new export.
+      // NOTE: The old image export in mxEditor is not used,
+      // the urlImage is used for the new export.
       if (editor.urlImage != null) {
         // Client-side code for image export
         const exportImage = editor => {
@@ -410,7 +401,8 @@ export default {
           const root = xmlDoc.createElement('output')
           xmlDoc.appendChild(root)
 
-          // Renders graph. Offset will be multiplied with state's scale when painting state.
+          // Renders graph. Offset will be multiplied with
+          // state's scale when painting state.
           const xmlCanvas = new mxXmlCanvas2D(root)
           xmlCanvas.translate(
             Math.floor(1 / scale - bounds.x),
@@ -462,8 +454,10 @@ export default {
         const rules = this.validatees[t]
         for (const r in rules) {
           const validateFn = this.validators[r]
-          if (!validateFn(v, rules[r])) {
-            throw new Error(`Invalid ${r}`)
+          try {
+            validateFn(v, edge, rules[r])
+          } catch (e) {
+            throw e
           }
         }
       }
@@ -473,14 +467,39 @@ export default {
       return vertex.value.nodeName.toLowerCase()
     },
 
-    validateMultiplicities (srcVertex, mult) {
-      console.log('[MULT]', srcVertex, mult)
-      return true
-    },
-
-    validateTargets (srcVertex, targets) {
-      console.log(this.getVertexType(srcVertex), targets)
-      return targets.includes(this.getVertexType(srcVertex))
+    validateMultiplicities (vertex, edge, mult) {
+      // const isSrc = mxUtils.equalEntries(vertex, edge.source)
+      const type = this.getVertexType(edge.target)
+      let max
+      switch (typeof mult) {
+        case 'number':
+          max = mult
+          break
+        case 'object':
+          max = mult[type]
+          break
+      }
+      const m = this.editor.graph.multiplicities
+        .find(mult => mult[type] === this.getVertexType(vertex))
+      if (!m) {
+        const allowed = Object.keys(mult)
+        this.editor.graph.multiplicities.push(
+          new mxMultiplicity(
+            true,
+            this.getVertexType(vertex),
+            null,
+            null,
+            1,
+            max,
+            allowed,
+            `Only connections to ${allowed.join(', ')} are allowed`,
+            'Invalid number of connections',
+            null
+          )
+        )
+      }
+      console.log(JSON.stringify(this.editor.graph.multiplicities))
+      this.editor.graph.validateGraph()
     }
   }
 }
