@@ -332,13 +332,11 @@
 					const selectedNode = Object.values(nodeList).find(node => node.title === 'Lock')
 					if (selectedNode) {
 						const b = editor.graph.isEnabled()
-						console.log('enabled:', b)
 						if (Object.keys(editor.graph.model.cells).length > 2) {
 							editor.graph.setEnabled(!b)
 							const imageName = b ? 'Unlock' : 'Lock'
 							selectedNode.src = `http://localhost:3000/images/spm/${imageName}.png`
 						}
-						console.log('now it\'s:', editor.graph.isEnabled())
 					}
 				}
 			}
