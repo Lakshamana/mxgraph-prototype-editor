@@ -1,6 +1,9 @@
 {
   "name": "mxgraph-prototype-editor",
   "version": "0.1.0",
+  "description": "A Vue.js project",
+  "author": "Lakshamana",
+  "license": "MIT",
   "private": true,
   "scripts": {
     "start": "npm run serve & npm run dev",
