@@ -49,24 +49,64 @@ export default {
       // Create select actions in page
       const selectActionsNode = this.$refs.selectActions
       mxUtils.write(selectActionsNode, 'Select: ')
-      mxUtils.linkAction(selectActionsNode, 'All', this.$refs.wrapper.editor, 'selectAll')
+      mxUtils.linkAction(
+        selectActionsNode,
+        'All',
+        this.$refs.wrapper.editor,
+        'selectAll'
+      )
       mxUtils.write(selectActionsNode, ', ')
-      mxUtils.linkAction(selectActionsNode, 'None', this.$refs.wrapper.editor, 'selectNone')
+      mxUtils.linkAction(
+        selectActionsNode,
+        'None',
+        this.$refs.wrapper.editor,
+        'selectNone'
+      )
       mxUtils.write(selectActionsNode, ', ')
-      mxUtils.linkAction(selectActionsNode, 'Vertices', this.$refs.wrapper.editor, 'selectVertices')
+      mxUtils.linkAction(
+        selectActionsNode,
+        'Vertices',
+        this.$refs.wrapper.editor,
+        'selectVertices'
+      )
       mxUtils.write(selectActionsNode, ', ')
-      mxUtils.linkAction(selectActionsNode, 'Edges', this.$refs.wrapper.editor, 'selectEdges')
+      mxUtils.linkAction(
+        selectActionsNode,
+        'Edges',
+        this.$refs.wrapper.editor,
+        'selectEdges'
+      )
 
       // Create select actions in page
       const zoomActionsNode = this.$refs.zoomActions
       mxUtils.write(zoomActionsNode, 'Zoom: ')
-      mxUtils.linkAction(zoomActionsNode, 'In', this.$refs.wrapper.editor, 'zoomIn')
+      mxUtils.linkAction(
+        zoomActionsNode,
+        'In',
+        this.$refs.wrapper.editor,
+        'zoomIn'
+      )
       mxUtils.write(zoomActionsNode, ', ')
-      mxUtils.linkAction(zoomActionsNode, 'Out', this.$refs.wrapper.editor, 'zoomOut')
+      mxUtils.linkAction(
+        zoomActionsNode,
+        'Out',
+        this.$refs.wrapper.editor,
+        'zoomOut'
+      )
       mxUtils.write(zoomActionsNode, ', ')
-      mxUtils.linkAction(zoomActionsNode, 'Actual', this.$refs.wrapper.editor, 'actualSize')
+      mxUtils.linkAction(
+        zoomActionsNode,
+        'Actual',
+        this.$refs.wrapper.editor,
+        'actualSize'
+      )
       mxUtils.write(zoomActionsNode, ', ')
-      mxUtils.linkAction(zoomActionsNode, 'Fit', this.$refs.wrapper.editor, 'fit')
+      mxUtils.linkAction(
+        zoomActionsNode,
+        'Fit',
+        this.$refs.wrapper.editor,
+        'fit'
+      )
     }
   },
 

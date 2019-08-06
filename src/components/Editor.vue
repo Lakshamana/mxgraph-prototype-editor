@@ -25,22 +25,23 @@
                   id="splash"
                   ref="splash"
                 >
-                  <img src="../static/examples/editors/images/loading.gif">
+                  <img src="../static/examples/editors/images/loading.gif" />
                 </center>
               </div>
               <textarea
                 id="xml"
                 ref="xml"
-              />
+              ></textarea>
             </td>
           </tr>
         </table>
+
         <span class="source-ipt">
           <input
             id="source"
             ref="source"
             type="checkbox"
-          >Source
+          />Source
         </span>
       </div>
     </div>
@@ -296,14 +297,13 @@ export default {
         const f = sender => {
           title.innerHTML = 'mxDraw - ' + sender.getTitle()
         }
-
-        editor.addListener(mxEvent.ROOT, f)
         f(editor)
       }
 
       // Listens vertexes's connect event
       editor.graph.connectionHandler.addListener(
-        mxEvent.CONNECT, (sender, evt) => {
+        mxEvent.CONNECT,
+        (sender, evt) => {
           const edge = evt.getProperty('cell')
           try {
             this.validateConnection(edge)
@@ -312,7 +312,8 @@ export default {
             editor.graph.removeCells([edge], true)
           }
           mxEvent.consume(evt)
-        })
+        }
+      )
 
       editor.graph.addListener(mxEvent.MOVE_CELLS, (sender, evt) => {
         const cell = editor.graph.getSelectionCell()
@@ -328,11 +329,6 @@ export default {
           cell.geometry.y = 0
         }
         mxEvent.consume(evt)
-      })
-
-      editor.addListener(mxEvent.ADD_VERTEX, (sdr, evt) => {
-        const vertex = evt.getProperty('vertex')
-        vertex.value.attributes.label.value = vertex.id
       })
 
       // Defines a new action to switch between
@@ -478,11 +474,11 @@ export default {
       const other = isSrc ? 'target' : 'source'
       const me = isSrc ? 'source' : 'target'
       const neighborType = this.getVertexType(edge[other])
-      const neighbors = vertex.edges
-        .filter(e =>
+      const neighbors = vertex.edges.filter(
+        e =>
           this.getVertexType(e[other]) === neighborType &&
           e[me].id === vertex.id
-        )
+      )
       const occurences = neighbors.length
       if (occurences > mult[neighborType]) {
         throw new Error(
