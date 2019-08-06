@@ -85,69 +85,62 @@ export default {
   data () {
     return {
       editor: undefined,
+      constraints: [],
       validatees: {
         normal: {
-          multiplicities: {
-            normal: 1,
-            decomposed: 2,
-            artifact: undefined,
-            join: undefined,
-            branch: undefined
+          constraints: {
+            targets: ['normal', 'decomposed', 'artifact', 'join', 'branch'],
+            outgoingTo: {
+              normal: 1,
+              decomposed: 2
+            },
+            incomingFrom: {
+              normal: 1,
+              decomposed: 2
+            }
           }
         },
         decomposed: {
-          multiplicities: {
-            normal: 2,
-            decomposed: 1,
-            artifact: undefined,
-            join: undefined,
-            branch: undefined
+          targets: ['normal', 'decomposed', 'artifact', 'join', 'branch'],
+          constraints: {
+            outgoingTo: {},
+            incomingFrom: {}
           }
         },
         agent: {
-          multiplicities: {
-            normal: 1,
-            decomposed: 1,
-            artifact: undefined,
-            join: undefined,
-            branch: undefined
+          constraints: {
+            outgoingTo: {},
+            incomingFrom: {}
           }
         },
         workgroup: {
-          multiplicities: {
-            normal: 1,
-            decomposed: 1,
-            artifact: undefined,
-            join: undefined,
-            branch: undefined
+          constraints: {
+            outgoingTo: {},
+            incomingFrom: {}
           }
         },
         artifact: {
-          multiplicities: {
-            normal: 1,
-            decomposed: 1
+          constraints: {
+            outgoingTo: {},
+            incomingFrom: {}
           }
         },
         join: {
-          multiplicities: {
-            normal: 1,
-            decomposed: 1,
-            join: undefined,
-            branch: undefined
+          constraints: {
+            outgoingTo: {},
+            incomingFrom: {}
           }
         },
         branch: {
-          multiplicities: {
-            normal: 1,
-            decomposed: 1,
-            join: undefined,
-            branch: undefined
+          constraints: {
+            outgoingTo: {},
+            incomingFrom: {}
           }
         }
       },
       validators: {
         targets: this.validateTargets,
-        multiplicities: this.validateMultiplicities
+        constraints: this.validateConstraints
       }
     }
   },
@@ -245,7 +238,7 @@ export default {
 
           // Prints the current root in the window title if the
           // current root of the graph changes (drilling).
-          editor.addListener(mxEvent.ROOT, funct)
+          // editor.addListener(mxEvent.ROOT, funct)
           funct(editor)
 
           // Displays version in statusbar
@@ -335,6 +328,11 @@ export default {
           cell.geometry.y = 0
         }
         mxEvent.consume(evt)
+      })
+
+      editor.addListener(mxEvent.ADD_VERTEX, (sdr, evt) => {
+        const vertex = evt.getProperty('vertex')
+        vertex.value.attributes.label.value = vertex.id
       })
 
       // Defines a new action to switch between
@@ -467,39 +465,30 @@ export default {
       return vertex.value.nodeName.toLowerCase()
     },
 
-    validateMultiplicities (vertex, edge, mult) {
-      // const isSrc = mxUtils.equalEntries(vertex, edge.source)
-      const type = this.getVertexType(edge.target)
-      let max
-      switch (typeof mult) {
-        case 'number':
-          max = mult
-          break
-        case 'object':
-          max = mult[type]
-          break
+    validateTargets (vertex, edge, targets) {
+      const targetType = this.getVertexType(edge.target)
+      if (!targets.includes(targetType)) {
+        throw new Error(`Invalid type ${targetType}`)
       }
-      const m = this.editor.graph.multiplicities
-        .find(mult => mult[type] === this.getVertexType(vertex))
-      if (!m) {
-        const allowed = Object.keys(mult)
-        this.editor.graph.multiplicities.push(
-          new mxMultiplicity(
-            true,
-            this.getVertexType(vertex),
-            null,
-            null,
-            1,
-            max,
-            allowed,
-            `Only connections to ${allowed.join(', ')} are allowed`,
-            'Invalid number of connections',
-            null
-          )
+    },
+
+    validateConstraints (vertex, edge, allMult) {
+      const isSrc = mxUtils.equalEntries(vertex, edge.source)
+      const mult = allMult[isSrc ? 'outgoingTo' : 'incomingFrom']
+      const other = isSrc ? 'target' : 'source'
+      const me = isSrc ? 'source' : 'target'
+      const neighborType = this.getVertexType(edge[other])
+      const neighbors = vertex.edges
+        .filter(e =>
+          this.getVertexType(e[other]) === neighborType &&
+          e[me].id === vertex.id
+        )
+      const occurences = neighbors.length
+      if (occurences > mult[neighborType]) {
+        throw new Error(
+          `Failed to validate, max ${mult[neighborType]}, found ${occurences}`
         )
       }
-      console.log(JSON.stringify(this.editor.graph.multiplicities))
-      this.editor.graph.validateGraph()
     }
   }
 }
