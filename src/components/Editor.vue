@@ -89,8 +89,8 @@ export default {
       constraints: [],
       validatees: {
         normal: {
+          targets: ['normal', 'decomposed', 'artifact', 'join', 'branch'],
           constraints: {
-            targets: ['normal', 'decomposed', 'artifact', 'join', 'branch'],
             outgoingTo: {
               normal: 1,
               decomposed: 2
@@ -102,41 +102,22 @@ export default {
           }
         },
         decomposed: {
-          targets: ['normal', 'decomposed', 'artifact', 'join', 'branch'],
-          constraints: {
-            outgoingTo: {},
-            incomingFrom: {}
-          }
+          targets: ['normal', 'decomposed', 'artifact', 'join', 'branch']
         },
         agent: {
-          constraints: {
-            outgoingTo: {},
-            incomingFrom: {}
-          }
+          targets: ['normal', 'decomposed']
         },
         workgroup: {
-          constraints: {
-            outgoingTo: {},
-            incomingFrom: {}
-          }
+          targets: ['normal', 'decomposed']
         },
         artifact: {
-          constraints: {
-            outgoingTo: {},
-            incomingFrom: {}
-          }
+          targets: ['normal', 'decomposed']
         },
         join: {
-          constraints: {
-            outgoingTo: {},
-            incomingFrom: {}
-          }
+          targets: ['normal', 'decomposed', 'join', 'branch']
         },
         branch: {
-          constraints: {
-            outgoingTo: {},
-            incomingFrom: {}
-          }
+          targets: ['normal', 'decomposed', 'join', 'branch']
         }
       },
       validators: {
@@ -229,6 +210,21 @@ export default {
           editor.graph.timerAutoScroll = true
           editor.validation = true
 
+          editor.graph.multiplicities.push(
+            new mxMultiplicity(
+              true, 'join', null, null, 0, 1,
+              ['normal', 'decomposed', 'join', 'branch'],
+              'Join must have at max 1 source node!',
+              null
+            ),
+            new mxMultiplicity(
+              false, 'branch', null, null, 0, 1,
+              ['normal', 'decomposed', 'join', 'branch'],
+              'Branch must have at max 1 target node!',
+              null
+            )
+          )
+
           // Updates the window title after opening new files
           const title = document.title
           const funct = sender => {
@@ -311,6 +307,7 @@ export default {
             alert(`Can't create connection: "${e}"`)
             editor.graph.removeCells([edge], true)
           }
+          editor.graph.validateGraph()
           mxEvent.consume(evt)
         }
       )
