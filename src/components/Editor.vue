@@ -50,7 +50,7 @@
 
 <script>
 import { addToWindow } from '../service/window.service'
-import mxGraphFactory from 'mxgraph'
+import mxGraphFactory from 'mxgraph-lakshamana'
 const {
   mxGeometry,
   mxGraph,

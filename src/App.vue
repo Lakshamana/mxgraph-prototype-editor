@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import mxGraphFactory from 'mxgraph'
+import mxGraphFactory from 'mxgraph-lakshamana'
 import Editor from './components/Editor'
 
 const { mxUtils } = mxGraphFactory
