@@ -459,7 +459,6 @@ export default {
       const isSrc = mxUtils.equalEntries(vertex, edge.source)
       const other = isSrc ? 'target' : 'source'
       const targetType = this.getVertexType(edge[other])
-      console.log(targetType, targets)
       if (!targets.includes(targetType)) {
         throw new Error(`Invalid type ${targetType}`)
       }
