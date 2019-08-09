@@ -17,7 +17,7 @@
 import mxGraphFactory from 'mxgraph-lakshamana'
 import Editor from './components/Editor'
 
-const { mxUtils } = mxGraphFactory
+const { mxUtils } = new mxGraphFactory()
 
 export default {
   name: 'App',
