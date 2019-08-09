@@ -283,9 +283,6 @@ export default {
       // (ie. switch between XML and graphical mode).
       editor.graph.setConnectable(true)
 
-      // Clones the source if new connection has no target
-      editor.graph.connectionHandler.setCreateTarget(true)
-
       // Updates the title if the root changes
       const title = document.getElementById('title')
 
