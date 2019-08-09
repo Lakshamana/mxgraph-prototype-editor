@@ -1,5 +1,5 @@
 <mxEditor defaultGroup="group" defaultEdge="connector">
-	<include name="http://localhost:3000/config/editor-commons.xml" />
+	<include name="http://localhost:3000/editor-commons.xml" />
 	<add as="onInit">
 		<![CDATA[
 		function ()
@@ -145,7 +145,7 @@
 				<add as="fontSize" value="10" />
 				<add as="align" value="center" />
 				<add as="verticalAlign" value="middle" />
-				<add as="image" value="http://localhost:3000/images/spm/normal_blank.gif" />
+				<add as="image" value="http://localhost:3000/spm/normal_blank.gif" />
 			</add>
 			<add as="decomposed">
 				<add as="shape" value="image" />
@@ -153,7 +153,7 @@
 				<add as="fontSize" value="10" />
 				<add as="align" value="center" />
 				<add as="verticalAlign" value="middle" />
-				<add as="image" value="http://localhost:3000/images/spm/decomposed_blank.gif" />
+				<add as="image" value="http://localhost:3000/spm/decomposed_blank.gif" />
 			</add>
 			<add as="agent">
 				<add as="shape" value="image" />
@@ -161,7 +161,7 @@
 				<add as="fontSize" value="10" />
 				<add as="align" value="center" />
 				<add as="verticalAlign" value="middle" />
-				<add as="image" value="http://localhost:3000/images/spm/agent.png" />
+				<add as="image" value="http://localhost:3000/spm/agent.png" />
 			</add>
 			<add as="workgroup">
 				<add as="shape" value="image" />
@@ -169,7 +169,7 @@
 				<add as="fontSize" value="10" />
 				<add as="align" value="center" />
 				<add as="verticalAlign" value="middle" />
-				<add as="image" value="http://localhost:3000/images/spm/group.png" />
+				<add as="image" value="http://localhost:3000/spm/group.png" />
 			</add>
 			<add as="artifact_empty">
 				<add as="shape" value="image" />
@@ -177,7 +177,7 @@
 				<add as="fontSize" value="10" />
 				<add as="align" value="center" />
 				<add as="verticalAlign" value="middle" />
-				<add as="image" value="http://localhost:3000/images/spm/artifact_empty.png" />
+				<add as="image" value="http://localhost:3000/spm/artifact_empty.png" />
 			</add>
 			<add as="artifact_full">
 				<add as="shape" value="image" />
@@ -185,7 +185,7 @@
 				<add as="fontSize" value="10" />
 				<add as="align" value="center" />
 				<add as="verticalAlign" value="middle" />
-				<add as="image" value="http://localhost:3000/images/spm/artifact_full.png" />
+				<add as="image" value="http://localhost:3000/spm/artifact_full.png" />
 			</add>
 			<add as="branch_or_end_end">
 				<add as="shape" value="image" />
@@ -193,7 +193,7 @@
 				<add as="fontSize" value="10" />
 				<add as="align" value="center" />
 				<add as="verticalAlign" value="middle" />
-				<add as="image" value="http://localhost:3000/images/spm/branch_or_end_end.gif" />
+				<add as="image" value="http://localhost:3000/spm/branch_or_end_end.gif" />
 			</add>
 			<add as="branch_or_start_start">
 				<add as="shape" value="image" />
@@ -201,7 +201,7 @@
 				<add as="fontSize" value="10" />
 				<add as="align" value="center" />
 				<add as="verticalAlign" value="middle" />
-				<add as="image" value="http://localhost:3000/images/spm/branch_or_start_start.gif" />
+				<add as="image" value="http://localhost:3000/spm/branch_or_start_start.gif" />
 			</add>
 			<add as="branch_or_end_start">
 				<add as="shape" value="image" />
@@ -209,7 +209,7 @@
 				<add as="fontSize" value="10" />
 				<add as="align" value="center" />
 				<add as="verticalAlign" value="middle" />
-				<add as="image" value="http://localhost:3000/images/spm/branch_or_end_start.gif" />
+				<add as="image" value="http://localhost:3000/spm/branch_or_end_start.gif" />
 			</add>
 			<add as="branch_and_end_end">
 				<add as="shape" value="image" />
@@ -217,7 +217,7 @@
 				<add as="fontSize" value="10" />
 				<add as="align" value="center" />
 				<add as="verticalAlign" value="middle" />
-				<add as="image" value="http://localhost:3000/images/spm/branch_and_end_end.gif" />
+				<add as="image" value="http://localhost:3000/spm/branch_and_end_end.gif" />
 			</add>
 			<add as="branch_and_start_start">
 				<add as="shape" value="image" />
@@ -225,7 +225,7 @@
 				<add as="fontSize" value="10" />
 				<add as="align" value="center" />
 				<add as="verticalAlign" value="middle" />
-				<add as="image" value="http://localhost:3000/images/spm/branch_and_start_start.gif" />
+				<add as="image" value="http://localhost:3000/spm/branch_and_start_start.gif" />
 			</add>
 			<add as="branch_and_end_start">
 				<add as="shape" value="image" />
@@ -233,7 +233,7 @@
 				<add as="fontSize" value="10" />
 				<add as="align" value="center" />
 				<add as="verticalAlign" value="middle" />
-				<add as="image" value="http://localhost:3000/images/spm/branch_and_end_start.gif" />
+				<add as="image" value="http://localhost:3000/spm/branch_and_end_start.gif" />
 			</add>
 			<add as="join_or_end_end">
 				<add as="shape" value="image" />
@@ -241,7 +241,7 @@
 				<add as="fontSize" value="10" />
 				<add as="align" value="center" />
 				<add as="verticalAlign" value="middle" />
-				<add as="image" value="http://localhost:3000/images/spm/join_or_end_end.gif" />
+				<add as="image" value="http://localhost:3000/spm/join_or_end_end.gif" />
 			</add>
 			<add as="join_or_start_start">
 				<add as="shape" value="image" />
@@ -249,7 +249,7 @@
 				<add as="fontSize" value="10" />
 				<add as="align" value="center" />
 				<add as="verticalAlign" value="middle" />
-				<add as="image" value="http://localhost:3000/images/spm/join_or_start_start.gif" />
+				<add as="image" value="http://localhost:3000/spm/join_or_start_start.gif" />
 			</add>
 			<add as="join_or_end_start">
 				<add as="shape" value="image" />
@@ -257,7 +257,7 @@
 				<add as="fontSize" value="10" />
 				<add as="align" value="center" />
 				<add as="verticalAlign" value="middle" />
-				<add as="image" value="http://localhost:3000/images/spm/join_or_end_start.gif" />
+				<add as="image" value="http://localhost:3000/spm/join_or_end_start.gif" />
 			</add>
 			<add as="join_and_end_end">
 				<add as="shape" value="image" />
@@ -265,7 +265,7 @@
 				<add as="fontSize" value="10" />
 				<add as="align" value="center" />
 				<add as="verticalAlign" value="middle" />
-				<add as="image" value="http://localhost:3000/images/spm/join_and_end_end.gif" />
+				<add as="image" value="http://localhost:3000/spm/join_and_end_end.gif" />
 			</add>
 			<add as="join_and_start_start">
 				<add as="shape" value="image" />
@@ -273,7 +273,7 @@
 				<add as="fontSize" value="10" />
 				<add as="align" value="center" />
 				<add as="verticalAlign" value="middle" />
-				<add as="image" value="http://localhost:3000/images/spm/join_and_start_start.gif" />
+				<add as="image" value="http://localhost:3000/spm/join_and_start_start.gif" />
 			</add>
 			<add as="join_and_end_start">
 				<add as="shape" value="image" />
@@ -281,7 +281,7 @@
 				<add as="fontSize" value="10" />
 				<add as="align" value="center" />
 				<add as="verticalAlign" value="middle" />
-				<add as="image" value="http://localhost:3000/images/spm/join_and_end_start.gif" />
+				<add as="image" value="http://localhost:3000/spm/join_and_end_start.gif" />
 			</add>
 		</mxStylesheet>
 		<mxGraphModel as="model">
@@ -325,7 +325,7 @@
 		</mxGraphModel>
 	</mxGraph>
 	<mxDefaultToolbar as="toolbar">
-		<add as="Lock" mode="lock" icon="http://localhost:3000/images/spm/Lock.png">
+		<add as="Lock" mode="lock" icon="http://localhost:3000/spm/Lock.png">
 			<![CDATA[ 
 			editor => {
 				if (editor.getToolbar().selectedMode.title === 'Lock') {
@@ -336,19 +336,19 @@
 						if (Object.keys(editor.graph.model.cells).length > 2) {
 							editor.graph.setEnabled(!b)
 							const imageName = b ? 'Unlock' : 'Lock'
-							selectedNode.src = `http://localhost:3000/images/spm/${imageName}.png`
+							selectedNode.src = `http://localhost:3000/spm/${imageName}.png`
 						}
 					}
 				}
 			}
 		]]>
 		</add>
-		<add as="Normal" template="normal" icon="http://localhost:3000/images/spm/normal.png" />
-		<add as="Decomposed" template="decomposed" icon="http://localhost:3000/images/spm/decomposed.png" />
-		<add as="Agent" template="agent" icon="http://localhost:3000/images/spm/agent.png" />
-		<add as="Workgroup" template="workgroup" icon="http://localhost:3000/images/spm/group.png" />
-		<add as="Artifact" template="artifact" icon="http://localhost:3000/images/spm/artifact_full.png" />
-		<add as="Join" template="join" icon="http://localhost:3000/images/spm/join.png" />
-		<add as="Branch" template="branch" icon="http://localhost:3000/images/spm/branch.png" />
+		<add as="Normal" template="normal" icon="http://localhost:3000/spm/normal.png" />
+		<add as="Decomposed" template="decomposed" icon="http://localhost:3000/spm/decomposed.png" />
+		<add as="Agent" template="agent" icon="http://localhost:3000/spm/agent.png" />
+		<add as="Workgroup" template="workgroup" icon="http://localhost:3000/spm/group.png" />
+		<add as="Artifact" template="artifact" icon="http://localhost:3000/spm/artifact_full.png" />
+		<add as="Join" template="join" icon="http://localhost:3000/spm/join.png" />
+		<add as="Branch" template="branch" icon="http://localhost:3000/spm/branch.png" />
 	</mxDefaultToolbar>
 </mxEditor>

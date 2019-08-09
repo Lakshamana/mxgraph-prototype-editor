@@ -7,7 +7,7 @@
   "private": true,
   "scripts": {
     "start": "npm run serve & npm run dev",
-    "serve": "node server.js",
+    "serve": "nodemon server.js",
     "dev": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
@@ -31,9 +31,13 @@
     "eslint-plugin-vue": "^5.0.0",
     "koa": "^2.7.0",
     "koa-router": "^7.4.0",
+    "koa-send": "^5.0.0",
     "koa-static": "^5.0.0",
     "nodemon": "^1.19.1",
     "prettier": "^1.18.2",
     "vue-template-compiler": "^2.6.10"
+  },
+  "engines": {
+    "node": "11.x"
   }
 }

@@ -160,7 +160,7 @@ export default {
 
   mounted () {
     this.editor = this.createEditor(
-      'http://localhost:3000/config/diagrameditor.xml'
+      'http://localhost:3000/diagrameditor.xml'
     )
   },
 
