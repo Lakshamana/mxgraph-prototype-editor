@@ -10,9 +10,6 @@ app.use(serve('src/static/examples/editors/config'))
 app.use(serve('src/static/examples/editors/images'))
 app.use(serve('dist'))
 
-// if (process.env.NODE_ENV === 'production') {
-
-// }
 app.use(async ctx => {
   await send(ctx, '/dist/index.html')
 })
