@@ -10,7 +10,7 @@
     "app": "npm run serve & npm run dev",
     "serve": "cross-env NODE_ENV=development nodemon backend/server.js",
     "dev": "vue-cli-service serve",
-    "build": "cross-env NODE_ENV=production vue-cli-service build",
+    "build": "vue-cli-service build --mode production",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
