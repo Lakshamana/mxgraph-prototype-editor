@@ -9,9 +9,10 @@
     "start": "node backend/server.js",
     "app": "npm run serve & npm run dev",
     "serve": "cross-env NODE_ENV=development nodemon backend/server.js",
+    "serve:prod": "cross-env NODE_ENV=production node backend/server.js",
     "dev": "vue-cli-service serve",
     "build": "vue-cli-service build --mode production",
-    "postinstall": "if test \"$NODE_ENV\" = \"production\" ; then npm run build ; fi ",
+    "postinstall": "if test \"$NODE_ENV\" = \"production\" ; then npm run build ; fi",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {

@@ -151,7 +151,7 @@ const xml =
       <add as="fontSize" value="10" />
       <add as="align" value="center" />
       <add as="verticalAlign" value="middle" />
-      <add as="image" value="${HOST}/${IMG_PATH}/normal_blank.gif" />
+      <add as="image" value="${HOST}/${IMG_PATH}/spm/normal_blank.gif" />
     </add>
     <add as="decomposed">
       <add as="shape" value="image" />
@@ -159,7 +159,7 @@ const xml =
       <add as="fontSize" value="10" />
       <add as="align" value="center" />
       <add as="verticalAlign" value="middle" />
-      <add as="image" value="${HOST}/${IMG_PATH}/decomposed_blank.gif" />
+      <add as="image" value="${HOST}/${IMG_PATH}/spm/decomposed_blank.gif" />
     </add>
     <add as="agent">
       <add as="shape" value="image" />
@@ -167,7 +167,7 @@ const xml =
       <add as="fontSize" value="10" />
       <add as="align" value="center" />
       <add as="verticalAlign" value="middle" />
-      <add as="image" value="${HOST}/${IMG_PATH}/agent.png" />
+      <add as="image" value="${HOST}/${IMG_PATH}/spm/agent.png" />
     </add>
     <add as="workgroup">
       <add as="shape" value="image" />
@@ -175,7 +175,7 @@ const xml =
       <add as="fontSize" value="10" />
       <add as="align" value="center" />
       <add as="verticalAlign" value="middle" />
-      <add as="image" value="${HOST}/${IMG_PATH}/group.png" />
+      <add as="image" value="${HOST}/${IMG_PATH}/spm/group.png" />
     </add>
     <add as="artifact_empty">
       <add as="shape" value="image" />
@@ -183,7 +183,7 @@ const xml =
       <add as="fontSize" value="10" />
       <add as="align" value="center" />
       <add as="verticalAlign" value="middle" />
-      <add as="image" value="${HOST}/${IMG_PATH}/artifact_empty.png" />
+      <add as="image" value="${HOST}/${IMG_PATH}/spm/artifact_empty.png" />
     </add>
     <add as="artifact_full">
       <add as="shape" value="image" />
@@ -191,7 +191,7 @@ const xml =
       <add as="fontSize" value="10" />
       <add as="align" value="center" />
       <add as="verticalAlign" value="middle" />
-      <add as="image" value="${HOST}/${IMG_PATH}/artifact_full.png" />
+      <add as="image" value="${HOST}/${IMG_PATH}/spm/artifact_full.png" />
     </add>
     <add as="branch_or_end_end">
       <add as="shape" value="image" />
@@ -199,7 +199,7 @@ const xml =
       <add as="fontSize" value="10" />
       <add as="align" value="center" />
       <add as="verticalAlign" value="middle" />
-      <add as="image" value="${HOST}/${IMG_PATH}/branch_or_end_end.gif" />
+      <add as="image" value="${HOST}/${IMG_PATH}/spm/branch_or_end_end.gif" />
     </add>
     <add as="branch_or_start_start">
       <add as="shape" value="image" />
@@ -207,7 +207,7 @@ const xml =
       <add as="fontSize" value="10" />
       <add as="align" value="center" />
       <add as="verticalAlign" value="middle" />
-      <add as="image" value="${HOST}/${IMG_PATH}/branch_or_start_start.gif" />
+      <add as="image" value="${HOST}/${IMG_PATH}/spm/branch_or_start_start.gif" />
     </add>
     <add as="branch_or_end_start">
       <add as="shape" value="image" />
@@ -215,7 +215,7 @@ const xml =
       <add as="fontSize" value="10" />
       <add as="align" value="center" />
       <add as="verticalAlign" value="middle" />
-      <add as="image" value="${HOST}/${IMG_PATH}/branch_or_end_start.gif" />
+      <add as="image" value="${HOST}/${IMG_PATH}/spm/branch_or_end_start.gif" />
     </add>
     <add as="branch_and_end_end">
       <add as="shape" value="image" />
@@ -223,7 +223,7 @@ const xml =
       <add as="fontSize" value="10" />
       <add as="align" value="center" />
       <add as="verticalAlign" value="middle" />
-      <add as="image" value="${HOST}/${IMG_PATH}/branch_and_end_end.gif" />
+      <add as="image" value="${HOST}/${IMG_PATH}/spm/branch_and_end_end.gif" />
     </add>
     <add as="branch_and_start_start">
       <add as="shape" value="image" />
@@ -231,7 +231,7 @@ const xml =
       <add as="fontSize" value="10" />
       <add as="align" value="center" />
       <add as="verticalAlign" value="middle" />
-      <add as="image" value="${HOST}/${IMG_PATH}/branch_and_start_start.gif" />
+      <add as="image" value="${HOST}/${IMG_PATH}/spm/branch_and_start_start.gif" />
     </add>
     <add as="branch_and_end_start">
       <add as="shape" value="image" />
@@ -239,7 +239,7 @@ const xml =
       <add as="fontSize" value="10" />
       <add as="align" value="center" />
       <add as="verticalAlign" value="middle" />
-      <add as="image" value="${HOST}/${IMG_PATH}/branch_and_end_start.gif" />
+      <add as="image" value="${HOST}/${IMG_PATH}/spm/branch_and_end_start.gif" />
     </add>
     <add as="join_or_end_end">
       <add as="shape" value="image" />
@@ -247,7 +247,7 @@ const xml =
       <add as="fontSize" value="10" />
       <add as="align" value="center" />
       <add as="verticalAlign" value="middle" />
-      <add as="image" value="${HOST}/${IMG_PATH}/join_or_end_end.gif" />
+      <add as="image" value="${HOST}/${IMG_PATH}/spm/join_or_end_end.gif" />
     </add>
     <add as="join_or_start_start">
       <add as="shape" value="image" />
@@ -255,7 +255,7 @@ const xml =
       <add as="fontSize" value="10" />
       <add as="align" value="center" />
       <add as="verticalAlign" value="middle" />
-      <add as="image" value="${HOST}/${IMG_PATH}/join_or_start_start.gif" />
+      <add as="image" value="${HOST}/${IMG_PATH}/spm/join_or_start_start.gif" />
     </add>
     <add as="join_or_end_start">
       <add as="shape" value="image" />
@@ -263,7 +263,7 @@ const xml =
       <add as="fontSize" value="10" />
       <add as="align" value="center" />
       <add as="verticalAlign" value="middle" />
-      <add as="image" value="${HOST}/${IMG_PATH}/join_or_end_start.gif" />
+      <add as="image" value="${HOST}/${IMG_PATH}/spm/join_or_end_start.gif" />
     </add>
     <add as="join_and_end_end">
       <add as="shape" value="image" />
@@ -271,7 +271,7 @@ const xml =
       <add as="fontSize" value="10" />
       <add as="align" value="center" />
       <add as="verticalAlign" value="middle" />
-      <add as="image" value="${HOST}/${IMG_PATH}/join_and_end_end.gif" />
+      <add as="image" value="${HOST}/${IMG_PATH}/spm/join_and_end_end.gif" />
     </add>
     <add as="join_and_start_start">
       <add as="shape" value="image" />
@@ -279,7 +279,7 @@ const xml =
       <add as="fontSize" value="10" />
       <add as="align" value="center" />
       <add as="verticalAlign" value="middle" />
-      <add as="image" value="${HOST}/${IMG_PATH}/join_and_start_start.gif" />
+      <add as="image" value="${HOST}/${IMG_PATH}/spm/join_and_start_start.gif" />
     </add>
     <add as="join_and_end_start">
       <add as="shape" value="image" />
@@ -287,7 +287,7 @@ const xml =
       <add as="fontSize" value="10" />
       <add as="align" value="center" />
       <add as="verticalAlign" value="middle" />
-      <add as="image" value="${HOST}/${IMG_PATH}/join_and_end_start.gif" />
+      <add as="image" value="${HOST}/${IMG_PATH}/spm/join_and_end_start.gif" />
     </add>
   </mxStylesheet>
   <mxGraphModel as="model">
@@ -331,7 +331,7 @@ const xml =
   </mxGraphModel>
 </mxGraph>
 <mxDefaultToolbar as="toolbar">
-  <add as="Lock" mode="lock" icon="${HOST}/${IMG_PATH}/Lock.png">
+  <add as="Lock" mode="lock" icon="${HOST}/${IMG_PATH}/spm/Lock.png">
     <![CDATA[
     editor => {
       if (editor.getToolbar().selectedMode.title === 'Lock') {
@@ -342,20 +342,20 @@ const xml =
           if (Object.keys(editor.graph.model.cells).length > 2) {
             editor.graph.setEnabled(!b)
             const imageName = b ? 'Unlock' : 'Lock'
-            selectedNode.src = '${HOST}/${IMG_PATH}/' + imageName + '.png'
+            selectedNode.src = '${HOST}/${IMG_PATH}/spm/' + imageName + '.png'
           }
         }
       }
     }
   ]]>
   </add>
-  <add as="Normal" template="normal" icon="${HOST}/${IMG_PATH}/normal.png" />
-  <add as="Decomposed" template="decomposed" icon="${HOST}/${IMG_PATH}/decomposed.png" />
-  <add as="Agent" template="agent" icon="${HOST}/${IMG_PATH}/agent.png" />
-  <add as="Workgroup" template="workgroup" icon="${HOST}/${IMG_PATH}/group.png" />
-  <add as="Artifact" template="artifact" icon="${HOST}/${IMG_PATH}/artifact_full.png" />
-  <add as="Join" template="join" icon="${HOST}/${IMG_PATH}/join.png" />
-  <add as="Branch" template="branch" icon="${HOST}/${IMG_PATH}/branch.png" />
+  <add as="Normal" template="normal" icon="${HOST}/${IMG_PATH}/spm/normal.png" />
+  <add as="Decomposed" template="decomposed" icon="${HOST}/${IMG_PATH}/spm/decomposed.png" />
+  <add as="Agent" template="agent" icon="${HOST}/${IMG_PATH}/spm/agent.png" />
+  <add as="Workgroup" template="workgroup" icon="${HOST}/${IMG_PATH}/spm/group.png" />
+  <add as="Artifact" template="artifact" icon="${HOST}/${IMG_PATH}/spm/artifact_full.png" />
+  <add as="Join" template="join" icon="${HOST}/${IMG_PATH}/spm/join.png" />
+  <add as="Branch" template="branch" icon="${HOST}/${IMG_PATH}/spm/branch.png" />
 </mxDefaultToolbar>
 </mxEditor>`
 
