@@ -50,6 +50,8 @@
 
 <script>
 import { addToWindow } from '../service/window.service'
+import { getXml } from '../service/xml.service'
+
 import mxGraphFactory from 'mxgraph-lakshamana'
 const {
   mxGeometry,
@@ -159,9 +161,7 @@ export default {
   },
 
   mounted () {
-    this.editor = this.createEditor(
-      'http://localhost:3000/diagrameditor.xml'
-    )
+    this.editor = this.createEditor(getXml())
   },
 
   beforeDestroy () {
@@ -196,7 +196,7 @@ export default {
             return this.toolbar.toolbar
           }
 
-          const node = mxUtils.load(config).getDocumentElement()
+          const node = mxUtils.parseXml(config).documentElement
           editor = new mxEditor(node)
           mxObjectCodec.allowEval = false
 
@@ -272,8 +272,10 @@ export default {
 
       // Defines an icon for creating new connections in the connection handler.
       // This will automatically disable the highlighting of the source vertex.
+      const HOST = process.env.VUE_APP_HOST
+      const IMG_PATH = process.env.VUE_APP_IMG_PATH
       mxConnectionHandler.prototype.connectImage = new mxImage(
-        'http://localhost:3000/connector.gif',
+        `${HOST}/${IMG_PATH}/connector.gif`,
         16,
         16
       )
