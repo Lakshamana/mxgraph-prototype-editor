@@ -13,9 +13,9 @@ const HOST = config.VUE_APP_HOST
 
 app.use(cors({ origin: `${HOST}` }))
 
-app.use(serve('src/static/examples/editors'))
-
-if (process.env.NODE_ENV === 'production') {
+if (!process.env.NODE_ENV === 'production') {
+  app.use(serve('src/static/examples/editors'))
+} else {
   app.use(serve('dist'))
   router.get(/.*/, async ctx => {
     await send(ctx, 'dist/index.html')
