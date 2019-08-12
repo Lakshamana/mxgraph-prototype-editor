@@ -16,10 +16,8 @@ app.use(cors({ origin: `${HOST}` }))
 app.use(serve('src/static/examples/editors'))
 
 if (process.env.NODE_ENV === 'production') {
-  console.log('passei')
   app.use(serve('dist'))
   router.get(/.*/, async ctx => {
-    console.log('caí no conto do vigário')
     await send(ctx, 'dist/index.html')
   })
   app.use(router.routes())
