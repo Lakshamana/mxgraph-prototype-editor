@@ -1,11 +1,9 @@
 /* eslint max-len: 0 */
 const HOST = process.env.VUE_APP_HOST
 const IMG_PATH = process.env.VUE_APP_IMG_PATH
-const CNF_PATH = process.env.VUE_APP_CNF_PATH
 
 const xml =
 `<mxEditor defaultGroup="group" defaultEdge="connector">
-<include name="${HOST}/${CNF_PATH}/editor-commons.xml" />
 <add as="onInit">
   <![CDATA[
   function ()
