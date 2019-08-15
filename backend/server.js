@@ -2,21 +2,25 @@ const koa = require('koa')
 const serve = require('koa-static')
 const send = require('koa-send')
 const cors = require('@koa/cors')
-const Router = require('koa-router')
 const config = require('../config')
 
 const app = new koa()
-const router = new Router()
 
 const HOST = config.VUE_APP_HOST
 
 app.use(cors({ origin: `${HOST}` }))
 
-app.use(serve('dist'))
-router.get('/', async ctx => {
-  await send(ctx, 'dist/index.html')
-})
-app.use(router.routes())
+if (process.env.NODE_ENV === 'production') {
+  const Router = require('koa-router')
+  const router = new Router()
+  app.use(serve('dist'))
+  router.get('/', async ctx => {
+    await send(ctx, 'dist/index.html')
+  })
+  app.use(router.routes())
+} else {
+  app.use(serve('src/static/examples/editors'))
+}
 
 const port = process.env.PORT || 3000
 app.listen(port)
