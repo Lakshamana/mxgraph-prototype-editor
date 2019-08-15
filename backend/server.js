@@ -10,7 +10,7 @@ const HOST = config.VUE_APP_HOST
 
 app.use(cors({ origin: `${HOST}` }))
 
-if (process.env.NODE_ENV === 'production') {
+if (['production', 'ssr'].includes(process.env.NODE_ENV)) {
   const Router = require('koa-router')
   const router = new Router()
   app.use(serve('dist'))
