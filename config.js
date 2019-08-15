@@ -2,9 +2,9 @@ const path = require('path')
 const dotenv = require('dotenv')
 
 const env = process.env.NODE_ENV || 'development'
-const tail = env === 'development' ? '' : '.production'
+const tail = env === 'development' ? '' : `${process.env.NODE_ENV}`
 
-const pth = path.join(__dirname, `./.env${tail}`)
+const pth = path.join(__dirname, `./.env.${tail}`)
 const envSetup = dotenv.config({
   path: pth
 })
