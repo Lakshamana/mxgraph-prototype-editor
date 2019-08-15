@@ -88,7 +88,6 @@ export default {
   data () {
     return {
       editor: undefined,
-      constraints: [],
       validatees: {
         normal: {
           targets: ['normal', 'decomposed', 'artifact', 'join', 'branch'],
@@ -125,7 +124,9 @@ export default {
       validators: {
         targets: this.validateTargets,
         constraints: this.validateConstraints
-      }
+      },
+      targetSkip: ['targets'],
+      sourceSkip: []
     }
   },
 
@@ -438,14 +439,17 @@ export default {
     },
 
     validateConnection (edge) {
-      const vertexes = [edge.source, edge.target]
-      for (const v of vertexes) {
-        const t = this.getVertexType(v)
+      const roots = ['source', 'target']
+      for (const rt of roots) {
+        const t = this.getVertexType(edge[rt])
         const rules = this.validatees[t]
         for (const r in rules) {
+          if (this[`${rt}Skip`].includes(r)) {
+            continue
+          }
           const validateFn = this.validators[r]
           try {
-            validateFn(v, edge, rules[r])
+            validateFn(edge[rt], edge, rules[r])
           } catch (e) {
             throw e
           }
@@ -467,21 +471,23 @@ export default {
     },
 
     validateConstraints (vertex, edge, allMult) {
-      const isSrc = mxUtils.equalEntries(vertex, edge.source)
-      const mult = allMult[isSrc ? 'outgoingTo' : 'incomingFrom']
-      const other = isSrc ? 'target' : 'source'
-      const me = isSrc ? 'source' : 'target'
-      const neighborType = this.getVertexType(edge[other])
-      const neighbors = vertex.edges.filter(
-        e =>
-          this.getVertexType(e[other]) === neighborType &&
-          e[me].id === vertex.id
-      )
-      const occurences = neighbors.length
-      if (occurences > mult[neighborType]) {
-        throw new Error(
-          `Failed to validate, max ${mult[neighborType]}, found ${occurences}`
+      if (Object.keys(allMult).length) {
+        const isSrc = mxUtils.equalEntries(vertex, edge.source)
+        const mult = allMult[isSrc ? 'outgoingTo' : 'incomingFrom']
+        const other = isSrc ? 'target' : 'source'
+        const me = isSrc ? 'source' : 'target'
+        const neighborType = this.getVertexType(edge[other])
+        const neighbors = vertex.edges.filter(
+          e =>
+            this.getVertexType(e[other]) === neighborType &&
+            e[me].id === vertex.id
         )
+        const occurences = neighbors.length
+        if (occurences > mult[neighborType]) {
+          throw new Error(
+            `Failed to validate, max ${mult[neighborType]}, found ${occurences}`
+          )
+        }
       }
     }
   }
