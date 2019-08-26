@@ -1,5 +1,7 @@
 # mxgraph-prototype-editor
 
+![travis build](https://travis-ci.org/Lakshamana/mxgraph-prototype-editor.svg?branch=master)
+
 This is a SPM's (Software Process Marketplace) editor prototype
 
 ## Project setup
