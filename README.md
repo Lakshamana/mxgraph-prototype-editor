@@ -1,6 +1,6 @@
 # mxgraph-prototype-editor
 
-![travis build](https://travis-ci.org/Lakshamana/mxgraph-prototype-editor.svg?branch=master)
+[![Build Status](https://travis-ci.com/Lakshamana/mxgraph-prototype-editor.svg?branch=master)](https://travis-ci.com/Lakshamana/mxgraph-prototype-editor)
 
 This is a SPM's (Software Process Marketplace) editor prototype
 
